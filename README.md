@@ -22,19 +22,14 @@ CRISPR-dCas9 technologies are designed to modulate gene expression. However, our
     B. Whippet pseudobulk for transcript specific analysis, post UMI deduplication.  **bash**
     C. Transcript quality control. **R**
     D. Whippet result visualisation.
-
 4. Normalisation of adata object and E-distance of KD
-5. Check gene and neighboring gene expression
+5. Check gene and neighbouring gene expression
 6. Create individual umaps per gene of interest 
-
     A. UMAPs 
-    
     B. Rand Index score
-7. Cell phase assignment model from FUCCI-matched single cell paper (GSE146773_)
+7. Cell phase assignment model from FUCCI-matched single cell paper (GSE146773)
 8. Differential Expression analysis.
-
     A. Find the shared P1 and P2 genes. 
-
     B. Check the shared P1 and P2 across different protospacers with the same A/B and C/D.
     
 9.  CNV Score & Numbat to quantify and Velocity quantification with loom file
