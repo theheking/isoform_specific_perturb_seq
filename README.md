@@ -13,12 +13,13 @@ CRISPR-dCas9 technologies are designed to modulate gene expression. However, our
 
 
 ***1_Promoter_identification***
-1A Integration of RNA-seq, ChIP-seq and CAGE-seq for MCF-7 
-1B Identify the genes with ideal APU events for guide 
-1C Comparison of promoter calling against refTSS and EPD
+1.
+    A. Integration of RNA-seq, ChIP-seq and CAGE-seq for MCF-7 
+    B. Identify the genes with ideal APU events for guide 
+    C. Comparison of promoter calling against refTSS and EPD
 
 ***2_Guide_design***
-2 Choosing ideal promoter-specific guide design 
+2.  Choosing ideal promoter-specific guide design 
 
 ***3_Analysis_Scripts***
 
