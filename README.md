@@ -18,7 +18,7 @@ CRISPR-dCas9 technologies are designed to modulate gene expression. However, our
     C. Comparison of promoter calling against refTSS and EPD
 
 ***2_Guide_design***
-2.  Choosing ideal promoter-specific guide design 
+2.  Choosing the ideal promoter-specific guide design 
 
 ***3_Analysis_Scripts***
 
