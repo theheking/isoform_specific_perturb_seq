@@ -23,6 +23,7 @@ extensions = [
     'sphinx.ext.mathjax',  # Renders math in notebooks
     'sphinx.ext.napoleon', # Supports Google/NumPy style docstrings
     'sphinx_copybutton',   # Adds a "copy" button to code blocks
+    'sphinxcontrib.collections', # <--- Add this line
 ]
 
 templates_path = ['_templates']

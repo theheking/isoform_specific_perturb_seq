@@ -1,6 +1,4 @@
 sphinx-rtd-theme
-sphinxcontrib-collections
+sphinx-collections
 nbsphinx
 sphinx-copybutton
-sphinx.ext.mathjax
-sphinx.ext.napoleon
