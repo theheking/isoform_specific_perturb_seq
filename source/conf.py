@@ -13,6 +13,11 @@ author = 'Helen King'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
+
+
+# extensions = [
+#     "sphinxcontrib.collections",
+# ]
 extensions = []
 
 templates_path = ['_templates']

@@ -1,58 +1,53 @@
-.. Isoform Specific Perturb-Seq documentation master file, created by
-   sphinx-quickstart on Wed Jan 14 10:43:27 2026.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
+Isoform-specific Perturb-seq
+============================
 
-Isoform Specific Perturb-Seq documentation
-==========================================
+.. attention::
+   ***Under construction***
 
-
-***Under construction***
+Isoform-specific single-cell Perturb-seq reveals that alternative promoters (AP) are not just redundant regulatory elements but drive distinct biological programs. This documentation covers the methods used to identify these promoters and quantify their functional impact on gene regulation and drug response.
 
 
-# Isoform-specific perturb-seq reveals alternative promoter dynamics in gene regulation and drug response
+Abstract and Key Findings
+-------------------------
+CRISPR-dCas9 technologies are typically designed to modulate gene expression at the gene level. However, many hits are promoter and isoform-specific. By leveraging the spatial specificity of CRISPRi—which typically influences transcription within ~1000 nucleotides of the guide binding site—we developed an isoform-specific Perturb-Seq screen[cite: 66, 68].
 
-### Abstract
-CRISPR-dCas9 technologies are designed to modulate gene expression. However, our findings reveal that many hits are promoter and isoform-specific. Leveraging this specificity, we developed an isoform-specific single-cell Perturb-Seq screen, showing that alternative promoters frequently compensate for targeted knockdowns and drive divergent gene expression programs at the single-cell level. Importantly, these isoform-specific effects influence drug response in breast cancer, underscoring the relevance of alternative promoters in functional genomics and drug discovery.
+**Major Biological Insights:**
+* **Widespread Functional Divergence:** Alternative promoters drive functionally distinct biological programs in **51.6%** of surveyed genes.
+* **Limited Transcriptional Overlap:** Promoter-specific knockdowns (P1 vs P2) typically perturb dozens to hundreds of genes, but only a small minority (median ~10) overlap between the two promoters of the same gene[cite: 636].
+* **Cell Cycle Regulation:** Alternative promoters frequently control divergent pathways in cell cycle regulation and proliferation[cite: 177, 180].
 
-## Publicly Available Dual-Guide Analysis
+Functional Case Study: ESR1 and Tamoxifen Response
+--------------------------------------------------
+The Estrogen Receptor 1 (*ESR1*) serves as a primary example of how alternative promoters influence clinical outcomes and drug sensitivity in breast cancer.
 
-***1_Promoter_identification***
 
+* **Isoform Structure:** Coordinated splicing between the P1 promoter and an alternative last exon produces a protein isoform with differences in the **AF2 domain**, potentially modifying interactions with estrogen and selective estrogen receptor modulators (SERMs)[cite: 185, 186].
+* **Clinical Significance:** High expression of the P1 promoter strongly correlates with decreased survival in **Luminal-A** breast cancer patients (HR = 1.9), while P2 expression shows no such association[cite: 189].
+* **Drug Response:**
+    * **P2 Knockdown:** Increases sensitivity to tamoxifen and significantly reduces cellular proliferation[cite: 184, 197].
+    * **P1 Knockdown:** Leads to increased proliferation in the presence of tamoxifen, suggesting a role in drug resistance[cite: 198].
 
-## APU Perturb-seq Analysis
+Analysis Pipeline Overview
+--------------------------
 
-***1_Promoter_identification***
-1.
-    A. Integration of RNA-seq, ChIP-seq and CAGE-seq for MCF-7 
-    B. Identify the genes with ideal APU events for guide 
-    C. Comparison of promoter calling against refTSS and EPD
+The analysis is structured into three main phases:
 
-***2_Guide_design***
-2.  Choosing the ideal promoter-specific guide design 
+1. **Promoter Identification**
+   Integration of RNA-seq, ChIP-seq, and CAGE-seq to identify targetable distal alternative promoters missed by standard CRISPRi libraries[cite: 144, 145].
 
-***3_Analysis_Scripts***
+2. **Guide Design**
+   Utilizing FlashFry for promoter-specific dual-guide design to ensure spatial targeting within the window of CRISPRi effectiveness.
 
-**APU_ANALYSIS** 
-Package that contains enclosed functions. 
+3. **APU Perturb-seq Analysis**
+   Quantifying functional divergence through:
+   * **Transcriptomics:** Using **Whippet** for isoform-specific quantification post-UMI deduplication[cite: 126].
+   * **Pathway Activity:** Using **Spectra** to identify coordinated gene expression programs (e.g., cell cycle phases) associated with specific promoters[cite: 174, 175].
+   * **Chromosomal Dynamics:** Using **inferCNV** to identify increases in copy number variations among cell cycle-related genes specifically in P2 knockdown populations[cite: 183].
 
-1. Run through the 10x Cellranger pipeline and velocyto for single cell RNAseq quantification and using (2) guides quantification. all found in the cellranger files folder **bash**
-2.  Guide Calling for dual guide. Use repogle method to take molecule.h5 generated by cellranger and py to run through repogle version of guide calling or use cellranger_guidecalling.ipynb for Direct Capture Perturb-Seq dual guide. Formed guide-specific lists of cells.
-3. Pseudobulk analysis.
-    A. Separation of guide-specific FASTQ files. **bash**
-    B. Whippet pseudobulk is used for transcript-specific analysis, post-UMI deduplication.  **bash**
-    C. Transcript quality control. **R**
-    D. Whippet result visualisation.
-4. Normalisation of adata object and E-distance of KD
-5. Check gene and neighbouring gene expression
-6. Create individual UMAPS per gene of interest 
-    A. UMAPs 
-    B. Rand Index score
-7. Cell phase assignment model from FUCCI-matched single cell paper (GSE146773)
-8. Differential Expression analysis.
-    A. Find the shared P1 and P2 genes. 
-    B. Check the shared P1 and P2 across protospacers with the same A/B and C/D.
-9.  CNV Score & Numbat to quantify and Velocity quantification with loom file
-10. ESR1-specific analysis from proliferation analysis to rt-qpcr
-11.  Spectra analysis and visualisation for pathway enrichment
+.. toctree::
+   :maxdepth: 2
+   :caption: Analysis Pipeline:
 
+   promoter_identification
+   guide_design
+   analysis_scripts

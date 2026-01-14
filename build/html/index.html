@@ -1,105 +1,165 @@
+
+
 <!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<html lang="en" data-content_root="./">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Isoform-specific Perturb-seq &mdash; Isoform Specific Perturb-Seq  documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
 
-    <title>Isoform Specific Perturb-Seq documentation &#8212; Isoform Specific Perturb-Seq  documentation</title>
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=61cd365c" />
-    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=12dfc556" />
-    <script src="_static/documentation_options.js?v=5929fcd5"></script>
-    <script src="_static/doctools.js?v=9a2dae69"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-   
-  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
-  
+    <link rel="next" title="Promoter Identification" href="promoter_identification.html" /> 
+</head>
 
-  
-  
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
 
-  </head><body>
-  
-
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
           
-
-          <div class="body" role="main">
-            
-  <section id="isoform-specific-perturb-seq-documentation">
-<h1>Isoform Specific Perturb-Seq documentation<a class="headerlink" href="#isoform-specific-perturb-seq-documentation" title="Link to this heading">¶</a></h1>
-<p>Add your content using <code class="docutils literal notranslate"><span class="pre">reStructuredText</span></code> syntax. See the
-<a class="reference external" href="https://www.sphinx-doc.org/en/master/usage/restructuredtext/index.html">reStructuredText</a>
-documentation for details.</p>
-<div class="toctree-wrapper compound">
+          
+          <a href="#" class="icon icon-home">
+            Isoform Specific Perturb-Seq
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
 </div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Analysis Pipeline:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="promoter_identification.html">Promoter Identification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide_design.html">Guide Design</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Isoform Specific Perturb-Seq</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Isoform-specific Perturb-seq</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="isoform-specific-perturb-seq">
+<h1>Isoform-specific Perturb-seq<a class="headerlink" href="#isoform-specific-perturb-seq" title="Link to this heading"></a></h1>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p><strong>*Under construction*</strong></p>
+</div>
+<p>Isoform-specific single-cell Perturb-seq reveals that alternative promoters (AP) are not just redundant regulatory elements but drive distinct biological programs. This documentation covers the methods used to identify these promoters and quantify their functional impact on gene regulation and drug response.</p>
+<section id="abstract-and-key-findings">
+<h2>Abstract and Key Findings<a class="headerlink" href="#abstract-and-key-findings" title="Link to this heading"></a></h2>
+<p>CRISPR-dCas9 technologies are typically designed to modulate gene expression at the gene level. However, many hits are promoter and isoform-specific. By leveraging the spatial specificity of CRISPRi—which typically influences transcription within ~1000 nucleotides of the guide binding site—we developed an isoform-specific Perturb-Seq screen[cite: 66, 68].</p>
+<p><strong>Major Biological Insights:</strong>
+* <strong>Widespread Functional Divergence:</strong> Alternative promoters drive functionally distinct biological programs in <strong>51.6%</strong> of surveyed genes.
+* <strong>Limited Transcriptional Overlap:</strong> Promoter-specific knockdowns (P1 vs P2) typically perturb dozens to hundreds of genes, but only a small minority (median ~10) overlap between the two promoters of the same gene[cite: 636].
+* <strong>Cell Cycle Regulation:</strong> Alternative promoters frequently control divergent pathways in cell cycle regulation and proliferation[cite: 177, 180].</p>
+</section>
+<section id="functional-case-study-esr1-and-tamoxifen-response">
+<h2>Functional Case Study: ESR1 and Tamoxifen Response<a class="headerlink" href="#functional-case-study-esr1-and-tamoxifen-response" title="Link to this heading"></a></h2>
+<p>The Estrogen Receptor 1 (<em>ESR1</em>) serves as a primary example of how alternative promoters influence clinical outcomes and drug sensitivity in breast cancer.</p>
+<ul class="simple">
+<li><p><strong>Isoform Structure:</strong> Coordinated splicing between the P1 promoter and an alternative last exon produces a protein isoform with differences in the <strong>AF2 domain</strong>, potentially modifying interactions with estrogen and selective estrogen receptor modulators (SERMs)[cite: 185, 186].</p></li>
+<li><p><strong>Clinical Significance:</strong> High expression of the P1 promoter strongly correlates with decreased survival in <strong>Luminal-A</strong> breast cancer patients (HR = 1.9), while P2 expression shows no such association[cite: 189].</p></li>
+<li><dl class="simple">
+<dt><strong>Drug Response:</strong></dt><dd><ul>
+<li><p><strong>P2 Knockdown:</strong> Increases sensitivity to tamoxifen and significantly reduces cellular proliferation[cite: 184, 197].</p></li>
+<li><p><strong>P1 Knockdown:</strong> Leads to increased proliferation in the presence of tamoxifen, suggesting a role in drug resistance[cite: 198].</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="analysis-pipeline-overview">
+<h2>Analysis Pipeline Overview<a class="headerlink" href="#analysis-pipeline-overview" title="Link to this heading"></a></h2>
+<p>The analysis is structured into three main phases:</p>
+<ol class="arabic simple">
+<li><p><strong>Promoter Identification</strong>
+Integration of RNA-seq, ChIP-seq, and CAGE-seq to identify targetable distal alternative promoters missed by standard CRISPRi libraries[cite: 144, 145].</p></li>
+<li><p><strong>Guide Design</strong>
+Utilizing FlashFry for promoter-specific dual-guide design to ensure spatial targeting within the window of CRISPRi effectiveness.</p></li>
+<li><p><strong>APU Perturb-seq Analysis</strong>
+Quantifying functional divergence through:
+* <strong>Transcriptomics:</strong> Using <strong>Whippet</strong> for isoform-specific quantification post-UMI deduplication[cite: 126].
+* <strong>Pathway Activity:</strong> Using <strong>Spectra</strong> to identify coordinated gene expression programs (e.g., cell cycle phases) associated with specific promoters[cite: 174, 175].
+* <strong>Chromosomal Dynamics:</strong> Using <strong>inferCNV</strong> to identify increases in copy number variations among cell cycle-related genes specifically in P2 knockdown populations[cite: 183].</p></li>
+</ol>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Analysis Pipeline:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="promoter_identification.html">Promoter Identification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="promoter_identification.html#notebooks-reports">Notebooks &amp; Reports</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="guide_design.html">Guide Design</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="guide_design.html#flashfry-analysis">FlashFry Analysis</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
 </section>
 
 
+           </div>
           </div>
-          
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="promoter_identification.html" class="btn btn-neutral float-right" title="Promoter Identification" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Helen King.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
         </div>
       </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="#">Isoform Specific Perturb-Seq</a></h1>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
 
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="#">Documentation overview</a><ul>
-  </ul></li>
-</ul>
-</div>
-<search id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
-      <input type="submit" value="Go" />
-    </form>
-    </div>
-</search>
-<script>document.getElementById('searchbox').style.display = "block"</script>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
-    </div>
-    <div class="footer">
-      &#169;2026, Helen King.
-      
-      |
-      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 7.3.7</a>
-      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 0.7.16</a>
-      
-      |
-      <a href="_sources/index.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
-  </body>
+</body>
 </html>
