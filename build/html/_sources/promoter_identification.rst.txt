@@ -20,5 +20,3 @@ Reports & Notebooks
   `Visualize Report <../scripts/1_promoter_identification/1C_refTSS_andTSS.html>`_
   | :download:`Download Raw HTML <../scripts/1_promoter_identification/1C_refTSS_andTSS.html>`
 
-.. seealso::
-   See the ``scripts/1_promoter_identification/README.md`` for detailed parameter explanations.
