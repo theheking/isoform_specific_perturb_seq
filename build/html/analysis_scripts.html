@@ -23,6 +23,7 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Guide Calling Using the Cellranger Module HDF5 File" href="scripts/3_analysis_scripts/2A_cellranger_guidecalling.html" />
     <link rel="prev" title="Guide Design" href="guide_design.html" /> 
 </head>
 
@@ -53,7 +54,17 @@
 <li class="toctree-l2"><a class="reference internal" href="#preprocessing-guide-calling">Preprocessing &amp; Guide Calling</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#transcriptional-divergence-e-stats">Transcriptional Divergence (E-Stats)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#cell-phase-pathway-modeling">Cell Phase &amp; Pathway Modeling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#clinical-differential-expression">Clinical &amp; Differential Expression</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="#clinical-differential-expression">Clinical &amp; Differential Expression</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/2A_cellranger_guidecalling.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/2B_guide_calling_cellrangerfilter4_idealguides.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/4_estatistic_gene_guide.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/5_genekd_neighbouring_gene_expression.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/6_perturbseq_tsne_kldivergence_umap.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/7A_cellphase_model.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/8_perturbseq_differentialexpression.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/9A_cnv_score.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/10D_esr1_survival_curve.html">GEPIA2 Run Through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/11A_spectra.html">Spectra Analysis</a></li>
 </ul>
 </li>
 </ul>
@@ -90,32 +101,32 @@
 <section id="preprocessing-guide-calling">
 <h2>Preprocessing &amp; Guide Calling<a class="headerlink" href="#preprocessing-guide-calling" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>Cellranger Pipeline:</strong> <a class="reference download internal" download="" href="_downloads/4279564821be4457a8df8c412ffd05aa/1_cellranger.sh"><code class="xref download docutils literal notranslate"><span class="pre">1_cellranger.sh</span></code></a></p></li>
-<li><p><strong>Guide Calling (Primary):</strong> <span class="xref std std-doc">Visualize Notebook</span> | <a class="reference download internal" download="" href="_downloads/e40f27ebb78cd5028f9c836eede0f8aa/2A_cellranger_guidecalling.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
-<li><p><strong>Guide Calling (Ideal Guides):</strong> <span class="xref std std-doc">Visualize Notebook</span> | <a class="reference download internal" download="" href="_downloads/0bcf03faa49d372dc9444e82e725b383/2B_guide_calling_cellrangerfilter4_idealguides.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
+<li><p><strong>Cellranger Pipeline:</strong> <a class="reference download internal" download="" href="_downloads/221a5b43ef21c2e941c05a2b1444d8f0/1_cellranger.sh"><code class="xref download docutils literal notranslate"><span class="pre">1_cellranger.sh</span></code></a></p></li>
+<li><p><strong>Guide Calling (Primary):</strong> <a class="reference internal" href="scripts/3_analysis_scripts/2A_cellranger_guidecalling.html"><span class="doc">Visualize Notebook</span></a> | <a class="reference download internal" download="" href="_downloads/748aba877c625f4519553fbf69ce9764/2A_cellranger_guidecalling.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
+<li><p><strong>Guide Calling (Ideal Guides):</strong> <a class="reference internal" href="scripts/3_analysis_scripts/2B_guide_calling_cellrangerfilter4_idealguides.html"><span class="doc">Visualize Notebook</span></a> | <a class="reference download internal" download="" href="_downloads/65ed54c2ab56bb81d8b939db14dacfc2/2B_guide_calling_cellrangerfilter4_idealguides.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
 </ul>
 </section>
 <section id="transcriptional-divergence-e-stats">
 <h2>Transcriptional Divergence (E-Stats)<a class="headerlink" href="#transcriptional-divergence-e-stats" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>E-Statistic Calculation:</strong> <span class="xref std std-doc">Visualize Notebook</span> | <a class="reference download internal" download="" href="_downloads/1a999f78dd9e8427f6903024f450abd2/4_estatistic_gene_guide.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
-<li><p><strong>Neighbouring Gene Expression:</strong> <span class="xref std std-doc">Visualize Notebook</span> | <a class="reference download internal" download="" href="_downloads/c6fcd42b28eb28b95fa9dff30d05f2f8/5_genekd_neighbouring_gene_expression.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
-<li><p><strong>UMAP &amp; KL-Divergence:</strong> <span class="xref std std-doc">Visualize Notebook</span> | <a class="reference download internal" download="" href="_downloads/b62e5f17de9fe88cc23b9127a3dc7384/6_perturbseq_tsne_kldivergence_umap.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
+<li><p><strong>E-Statistic Calculation:</strong> <a class="reference internal" href="scripts/3_analysis_scripts/4_estatistic_gene_guide.html"><span class="doc">Visualize Notebook</span></a> | <a class="reference download internal" download="" href="_downloads/fe369773a6066f8f416b2fc94bc6a7dc/4_estatistic_gene_guide.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
+<li><p><strong>Neighbouring Gene Expression:</strong> <a class="reference internal" href="scripts/3_analysis_scripts/5_genekd_neighbouring_gene_expression.html"><span class="doc">Visualize Notebook</span></a> | <a class="reference download internal" download="" href="_downloads/3a34631f69a43d4d8763566e09e738e1/5_genekd_neighbouring_gene_expression.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
+<li><p><strong>UMAP &amp; KL-Divergence:</strong> <a class="reference internal" href="scripts/3_analysis_scripts/6_perturbseq_tsne_kldivergence_umap.html"><span class="doc">Visualize Notebook</span></a> | <a class="reference download internal" download="" href="_downloads/63c10e71b6881351268cb2d6af698940/6_perturbseq_tsne_kldivergence_umap.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
 </ul>
 </section>
 <section id="cell-phase-pathway-modeling">
 <h2>Cell Phase &amp; Pathway Modeling<a class="headerlink" href="#cell-phase-pathway-modeling" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>Cell Phase Model:</strong> <span class="xref std std-doc">Visualize Notebook</span> | <a class="reference download internal" download="" href="_downloads/f8f504931434eef4a6a7f7ec7ce8de50/7A_cellphase_model.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
-<li><p><strong>Spectra Pathway Analysis:</strong> <span class="xref std std-doc">Visualize Notebook</span> | <a class="reference download internal" download="" href="_downloads/56b4a62c346ce4704f3fd07d626a3dc6/11A_spectra.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
-<li><p><strong>CNV Score Analysis:</strong> <span class="xref std std-doc">Visualize Notebook</span> | <a class="reference download internal" download="" href="_downloads/7dc59c54690a75155b8c4e2d1ef432e6/9A_cnv_score.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
+<li><p><strong>Cell Phase Model:</strong> <a class="reference internal" href="scripts/3_analysis_scripts/7A_cellphase_model.html"><span class="doc">Visualize Notebook</span></a> | <a class="reference download internal" download="" href="_downloads/ad4ca6f8c79fbc7113cb2ff2b39bc420/7A_cellphase_model.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
+<li><p><strong>Spectra Pathway Analysis:</strong> <a class="reference internal" href="scripts/3_analysis_scripts/11A_spectra.html"><span class="doc">Visualize Notebook</span></a> | <a class="reference download internal" download="" href="_downloads/6be4598c8654a7b9e5b3d719511a7a36/11A_spectra.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
+<li><p><strong>CNV Score Analysis:</strong> <a class="reference internal" href="scripts/3_analysis_scripts/9A_cnv_score.html"><span class="doc">Visualize Notebook</span></a> | <a class="reference download internal" download="" href="_downloads/3f18a06bbd591bbf4c726047746cb82a/9A_cnv_score.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
 </ul>
 </section>
 <section id="clinical-differential-expression">
 <h2>Clinical &amp; Differential Expression<a class="headerlink" href="#clinical-differential-expression" title="Link to this heading"></a></h2>
 <ul class="simple">
-<li><p><strong>Differential Expression:</strong> <span class="xref std std-doc">Visualize Notebook</span> | <a class="reference download internal" download="" href="_downloads/e52e13ffac52046ad4a481dcdc6ea86c/8_perturbseq_differentialexpression.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
-<li><p><strong>ESR1 Survival Curves:</strong> <span class="xref std std-doc">Visualize Notebook</span> | <a class="reference download internal" download="" href="_downloads/26b3541574d5105b3a19097cac484735/10D_esr1_survival_curve.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
+<li><p><strong>Differential Expression:</strong> <a class="reference internal" href="scripts/3_analysis_scripts/8_perturbseq_differentialexpression.html"><span class="doc">Visualize Notebook</span></a> | <a class="reference download internal" download="" href="_downloads/1b4ce115d15c5a8f88566cbe9e78d300/8_perturbseq_differentialexpression.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
+<li><p><strong>ESR1 Survival Curves:</strong> <a class="reference internal" href="scripts/3_analysis_scripts/10D_esr1_survival_curve.html"><span class="doc">Visualize Notebook</span></a> | <a class="reference download internal" download="" href="_downloads/51e5323f4b9276173fbd7abce67a5488/10D_esr1_survival_curve.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
 </ul>
 <div class="toctree-wrapper compound">
 </div>
@@ -127,6 +138,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="guide_design.html" class="btn btn-neutral float-left" title="Guide Design" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="scripts/3_analysis_scripts/2A_cellranger_guidecalling.html" class="btn btn-neutral float-right" title="Guide Calling Using the Cellranger Module HDF5 File" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

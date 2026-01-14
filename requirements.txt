@@ -1,3 +1,4 @@
 sphinx-rtd-theme
 nbsphinx
 sphinx-copybutton
+pandoc

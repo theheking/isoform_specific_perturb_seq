@@ -1,0 +1,689 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guide Calling Using the Cellranger Module HDF5 File &mdash; Isoform Specific Perturb-Seq  documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+      <link rel="stylesheet" type="text/css" href="../../_static/nbsphinx-code-cells.css?v=2aa19091" />
+
+  
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+      <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+      <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+      <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+      <script src="../../_static/copybutton.js?v=f281be69"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+      <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+      <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Guide Calling Using the Cellranger Module HDF5 File" href="5_genekd_neighbouring_gene_expression.html" />
+    <link rel="prev" title="Guide Calling Using the Cellranger Module HDF5 File" href="2B_guide_calling_cellrangerfilter4_idealguides.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Isoform Specific Perturb-Seq
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Analysis Pipeline:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../promoter_identification.html">Promoter Identification</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guide_design.html">Guide Design</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../analysis_scripts.html">Analysis Scripts &amp; Pipelines</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#preprocessing-guide-calling">Preprocessing &amp; Guide Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#transcriptional-divergence-e-stats">Transcriptional Divergence (E-Stats)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#cell-phase-pathway-modeling">Cell Phase &amp; Pathway Modeling</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../analysis_scripts.html#clinical-differential-expression">Clinical &amp; Differential Expression</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="2A_cellranger_guidecalling.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2B_guide_calling_cellrangerfilter4_idealguides.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Guide Calling Using the Cellranger Module HDF5 File</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#Utilising-Direct-Capture-Perturb-Seq-to-Deciphering-Alternative-Promoter-Usage">Utilising Direct Capture Perturb-Seq to Deciphering Alternative Promoter Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="5_genekd_neighbouring_gene_expression.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="6_perturbseq_tsne_kldivergence_umap.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="7A_cellphase_model.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="8_perturbseq_differentialexpression.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="9A_cnv_score.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="10D_esr1_survival_curve.html">GEPIA2 Run Through</a></li>
+<li class="toctree-l3"><a class="reference internal" href="11A_spectra.html">Spectra Analysis</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Isoform Specific Perturb-Seq</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../analysis_scripts.html">Analysis Scripts &amp; Pipelines</a></li>
+      <li class="breadcrumb-item active">Guide Calling Using the Cellranger Module HDF5 File</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/scripts/3_analysis_scripts/4_estatistic_gene_guide.ipynb.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="Guide-Calling-Using-the-Cellranger-Module-HDF5-File">
+<h1>Guide Calling Using the Cellranger Module HDF5 File<a class="headerlink" href="#Guide-Calling-Using-the-Cellranger-Module-HDF5-File" title="Link to this heading"></a></h1>
+<section id="Utilising-Direct-Capture-Perturb-Seq-to-Deciphering-Alternative-Promoter-Usage">
+<h2>Utilising Direct Capture Perturb-Seq to Deciphering Alternative Promoter Usage<a class="headerlink" href="#Utilising-Direct-Capture-Perturb-Seq-to-Deciphering-Alternative-Promoter-Usage" title="Link to this heading"></a></h2>
+<ol class="arabic simple">
+<li><p>Run through the 10x Cellranger pipeline and velocyto for single cell RNAseq quatification and using (2) guides quantifiction. all found in the cellranger files folder <strong>bash</strong></p></li>
+<li><p>Guide Calling for dual guide. Use repogle method to take molecule.h5 generated by cellranger and py to run through repogle version of guide calling or use cellranger_guidecalling.ipynb for Direct Capture Perturb-Seq dual guide. Formed guide-specific lists of cells.</p></li>
+<li><p>Pseudobulk analysis. A. Seperation of guide-specific fastq files. <strong>bash</strong> B. Whippet pseudobulk for transcript specific analysis, post UMI deduplication. <strong>bash</strong> C. Transcript quality control. <strong>R</strong> D. Whippet result visualisation.</p></li>
+<li><p><strong>Normalisation of adata object and E-distance of KD</strong></p></li>
+<li><p>Check gene and neighboring gene expression</p></li>
+<li><p>Create individual umaps per gene of interest</p>
+<ol class="upperalpha simple">
+<li><p>UMAPs</p></li>
+<li><p>Rand Index score</p></li>
+</ol>
+</li>
+<li><p>Cell phase assignment model from FUCCI-matched single cell paper (GSE146773_)</p></li>
+<li><p>Differential Expression analysis.</p>
+<ol class="upperalpha simple">
+<li><p>Find the shared P1 and P2 genes.</p></li>
+<li><p>Check the shared P1 and P2 across different protospacers with the same A/B and C/D.</p></li>
+</ol>
+</li>
+<li><p>CNV Score &amp; Numbat to quantify and Velocity quantification with loom file</p></li>
+<li><p>ESR1-specific analysis from proliferation analysis to rt-qpcr</p></li>
+<li><p>Spectra analysis and visualisation for pathway enrichment</p></li>
+</ol>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">scanpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">anndata</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">ad</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tqdm.notebook</span><span class="w"> </span><span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">clear_output</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scperturb</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">pyensembl</span><span class="w"> </span><span class="kn">import</span> <span class="n">EnsemblRelease</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">liftover</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_lifter</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">apu_analysis</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scperturb</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">infercnvpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cnv</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">apu_analysis.cell_import</span><span class="w"> </span><span class="kn">import</span> <span class="n">CellPopulation</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="c1"># colours using garvan</span>
+<span class="n">color1</span> <span class="o">=</span><span class="s1">&#39;#4d00c7&#39;</span>
+<span class="n">palecolor1</span><span class="o">=</span><span class="s2">&quot;#b366ff&quot;</span>
+<span class="n">color2</span><span class="o">=</span> <span class="s1">&#39;#da3c07&#39;</span>
+<span class="n">palecolor2</span><span class="o">=</span><span class="s2">&quot;#ff8954&quot;</span>
+<span class="n">color3</span><span class="o">=</span><span class="s1">&#39;#05d3d3&#39;</span>
+<span class="n">color4</span><span class="o">=</span><span class="s1">&#39;#c6c7c5&#39;</span>
+
+<span class="c1">#use viridis</span>
+<span class="n">color1</span><span class="o">=</span><span class="s2">&quot;#fde725&quot;</span>
+<span class="n">color2</span><span class="o">=</span><span class="s2">&quot;#7ad151&quot;</span>
+<span class="n">color3</span><span class="o">=</span><span class="s2">&quot;#22a884&quot;</span>
+<span class="n">color4</span><span class="o">=</span><span class="s2">&quot;#2a788e&quot;</span>
+<span class="n">color5</span><span class="o">=</span><span class="s2">&quot;#2a788e&quot;</span>
+<span class="n">color6</span><span class="o">=</span><span class="s1">&#39;#440154&#39;</span>
+
+<span class="c1">#hotpink yellow and blue</span>
+<span class="n">color1</span><span class="o">=</span><span class="s1">&#39;#d81b61&#39;</span> <span class="c1">#true</span>
+<span class="n">color2</span><span class="o">=</span><span class="s1">&#39;#fec111&#39;</span> <span class="c1">#false</span>
+<span class="n">color3</span><span class="o">=</span><span class="s1">&#39;#2179b4&#39;</span> <span class="c1">#negative control</span>
+
+<span class="c1">#protein level</span>
+<span class="n">color1</span><span class="o">=</span><span class="s1">&#39;#3d82c4&#39;</span> <span class="c1">#true</span>
+<span class="n">color2</span><span class="o">=</span><span class="s1">&#39;#2179b4&#39;</span> <span class="c1">#false</span>
+
+<span class="c1"># Create the color palette</span>
+<span class="n">palette</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">([</span><span class="n">color1</span><span class="p">,</span> <span class="n">color2</span><span class="p">,</span><span class="n">color3</span><span class="p">])</span>
+<span class="n">new_palette</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">color_palette</span><span class="p">([</span><span class="n">color1</span><span class="p">,</span> <span class="n">color2</span><span class="p">,</span><span class="n">color1</span><span class="p">,</span> <span class="n">color2</span><span class="p">,</span><span class="n">color1</span><span class="p">,</span> <span class="n">color2</span><span class="p">,</span><span class="n">color1</span><span class="p">,</span> <span class="n">color2</span><span class="p">,</span><span class="n">color1</span><span class="p">,</span> <span class="n">color2</span><span class="p">,</span><span class="n">color1</span><span class="p">,</span> <span class="n">color2</span><span class="p">,</span> <span class="n">color3</span><span class="p">,</span> <span class="n">color4</span><span class="p">])</span>
+
+<span class="n">loc</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s2">&quot;~&quot;</span><span class="p">)</span>
+<span class="n">fig_loc</span><span class="o">=</span><span class="n">loc</span><span class="o">+</span><span class="s2">&quot;/figures/&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Scanpy&quot;</span><span class="p">,</span> <span class="n">sc</span><span class="o">.</span><span class="n">__version__</span><span class="p">)</span>
+<span class="o">%</span><span class="k">matplotlib</span> inline
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[40]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">##this reads in the output from 10x as well as cell_indetities.csv which is a file that annotates each cell barcode with a</span>
+<span class="c1">#cell_barcode,guide_identity,read_count,UMI_count,coverage,gemgroup,good_coverage,number_of_cells</span>
+<span class="n">pop</span> <span class="o">=</span> <span class="n">CellPopulation</span><span class="o">.</span><span class="n">from_file</span><span class="p">(</span><span class="s1">&#39;alt-prom-crispr-fiveprime/cellranger_output&#39;</span><span class="p">,</span>
+                               <span class="n">genome</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">filtered</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">raw_umi_threshold</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">strip_low_expression</span><span class="p">(</span><span class="n">pop</span><span class="p">)</span>
+
+<span class="c1">#create list of nontargeting guides</span>
+<span class="n">nontargeting_control</span><span class="o">=</span><span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;guide_identity&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Neg&quot;</span><span class="p">)</span><span class="o">|</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;non&quot;</span><span class="p">)</span><span class="o">|</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;Non&quot;</span><span class="p">)</span><span class="o">|</span> <span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;sgNegC&quot;</span><span class="p">))]</span>
+<span class="n">non_targeting_list</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">dict</span><span class="o">.</span><span class="n">fromkeys</span><span class="p">(</span><span class="n">nontargeting_control</span><span class="p">))</span>
+
+<span class="c1">#add perturbation column to the pop.cells dataframe</span>
+<span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;perturbation&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;guide_identity&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">non_targeting_list</span><span class="p">),</span><span class="s2">&quot;non-targeting&quot;</span><span class="p">,</span><span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;guide_identity&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;sg&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+
+<span class="c1">#seperately annotate the positive control guides</span>
+<span class="n">pos_control</span><span class="o">=</span><span class="p">[</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;guide_identity&quot;</span><span class="p">]</span> <span class="k">if</span> <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;sgRPL3&quot;</span><span class="p">)</span><span class="o">|</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;sgSNRPD&quot;</span><span class="p">)</span><span class="o">|</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;sgATF5&quot;</span><span class="p">)</span><span class="o">|</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;sgGINS1&quot;</span><span class="p">)</span><span class="o">|</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;sgRPL31A&quot;</span><span class="p">)</span><span class="o">|</span><span class="nb">str</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;sgSNRPD&quot;</span><span class="p">))]</span>
+<span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;perturbation&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;guide_identity&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">pos_control</span><span class="p">),</span><span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;perturbation&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;perturbation&quot;</span><span class="p">])</span>
+
+<span class="c1">#add a column for the promoter type</span>
+<span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;promoter_type&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;guide_identity&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span>
+<span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;promoter_type&quot;</span><span class="p">][(</span><span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;promoter_type&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;00&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;promoter_type&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;01&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;promoter_type&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;02&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;promoter_type&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;03&quot;</span><span class="p">)]</span> <span class="o">=</span> <span class="s2">&quot;Control&quot;</span>
+<span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="o">=</span><span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+<span class="c1">#add certain filters and add information</span>
+<span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="o">=</span><span class="n">add_filter_columns</span><span class="p">(</span><span class="n">input_dataframe</span><span class="o">=</span><span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span> <span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;cell_barcode&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">())</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Loading digital expression data: alt-prom-crispr-fiveprime/cellranger_output/filtered_feature_bc_matrix/matrix.mtx...
+Densifying matrix...
+Loading guide identities:alt-prom-crispr-fiveprime/cellranger_output/cell_identities.csv...
+Generating summary statistics...
+Done.
+(28365, 25) 28365
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%%capture</span>
+<span class="n">adata</span> <span class="o">=</span> <span class="n">ad</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">loc</span><span class="o">+</span><span class="s2">&quot;files/adata_normalised.h5ad&quot;</span><span class="p">)</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="s2">&quot;log1p&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[64]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s1">&#39;processed&#39;</span> <span class="ow">in</span> <span class="n">adata</span><span class="o">.</span><span class="n">uns</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;The dataset is already processed. Skipping processing...&#39;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="n">adata</span> <span class="o">=</span> <span class="n">ad</span><span class="o">.</span><span class="n">AnnData</span><span class="p">(</span><span class="n">pop</span><span class="o">.</span><span class="n">matrix</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">pop</span><span class="o">.</span><span class="n">cells</span><span class="p">[</span><span class="s2">&quot;cell_barcode&quot;</span><span class="p">]])</span>
+  <span class="n">adata</span><span class="o">.</span><span class="n">obs</span> <span class="o">=</span> <span class="n">pop</span><span class="o">.</span><span class="n">cells</span>
+  <span class="n">adata</span><span class="o">.</span><span class="n">var_names</span> <span class="o">=</span> <span class="n">pop</span><span class="o">.</span><span class="n">matrix</span><span class="o">.</span><span class="n">columns</span>
+  <span class="n">adata</span><span class="o">.</span><span class="n">obs_names</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;cell_barcode&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+  <span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span>
+  <span class="n">adata</span><span class="o">.</span><span class="n">var_names_make_unique</span><span class="p">()</span>
+  <span class="c1">#remove any na values from</span>
+  <span class="n">adata</span> <span class="o">=</span> <span class="n">adata</span><span class="p">[</span><span class="o">~</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;guide_id&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()),:]</span>
+  <span class="c1">#remove all genes that start with sg</span>
+  <span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">[:,</span><span class="o">~</span><span class="p">((</span><span class="n">adata</span><span class="o">.</span><span class="n">var_names</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;sg&#39;</span><span class="p">))</span><span class="o">|</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">var_names</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;non&#39;</span><span class="p">))</span><span class="o">|</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">var_names</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;Non&#39;</span><span class="p">)))]</span>
+  <span class="n">whippet</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;/Supplementary_Information/Table_S4.xlsx&quot;</span><span class="p">)</span>
+  <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;guide_target&#39;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;guide_target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s2">&quot;sg&quot;</span><span class="p">),</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s1">&#39;guide_target&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">2</span><span class="p">:],</span><span class="s2">&quot;non-targeting&quot;</span><span class="p">)</span>
+  <span class="c1">#merge on the lhs with whippet</span>
+  <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">whippet</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s2">&quot;guide_target&quot;</span><span class="p">,</span><span class="n">right_on</span><span class="o">=</span><span class="s2">&quot;gene&quot;</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+  <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;successfulKD&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;successfulKD&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;str&#39;</span><span class="p">)</span>
+  <span class="n">adata</span><span class="o">.</span><span class="n">obs_names</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;cell_barcode&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+  <span class="c1">#import another</span>
+  <span class="n">adata2</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">read_10x_mtx</span><span class="p">(</span><span class="s2">&quot;alt-prom-crispr-fiveprime/cellranger_output/filtered_feature_bc_matrix&quot;</span><span class="p">)</span>
+  <span class="c1">#add pop2 to pop #get the same genes and cells as adata</span>
+  <span class="c1">#list of genes found in both</span>
+  <span class="n">genes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">var_names</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">adata2</span><span class="o">.</span><span class="n">var_names</span><span class="p">))</span>
+  <span class="c1">#list of cells found in both</span>
+  <span class="n">cells</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs_names</span><span class="p">)</span> <span class="o">&amp;</span> <span class="nb">set</span><span class="p">(</span><span class="n">adata2</span><span class="o">.</span><span class="n">obs_names</span><span class="p">))</span>
+  <span class="n">adata</span><span class="o">=</span><span class="n">adata</span><span class="p">[</span><span class="n">cells</span><span class="p">,</span><span class="n">genes</span><span class="p">]</span>
+  <span class="n">adata2</span><span class="o">=</span><span class="n">adata2</span><span class="p">[</span><span class="n">cells</span><span class="p">,</span><span class="n">genes</span><span class="p">]</span>
+  <span class="c1">#add the X from adata2 to adata</span>
+  <span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">X</span> <span class="o">+</span> <span class="n">adata2</span><span class="o">.</span><span class="n">X</span>
+  <span class="n">adata</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="s1">&#39;counts&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+  <span class="n">mitochondrial_genes</span><span class="o">=</span><span class="n">sc</span><span class="o">.</span><span class="n">queries</span><span class="o">.</span><span class="n">mitochondrial_genes</span><span class="p">(</span><span class="s2">&quot;hsapiens&quot;</span><span class="p">,</span><span class="n">attrname</span><span class="o">=</span><span class="s2">&quot;hgnc_symbol&quot;</span><span class="p">)</span>
+  <span class="n">adata</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">&#39;mt&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">var_names</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">mitochondrial_genes</span><span class="p">[</span><span class="s2">&quot;hgnc_symbol&quot;</span><span class="p">])</span> <span class="c1"># annotate the group of mitochondrial genes as &#39;mt&#39;</span>
+  <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">calculate_qc_metrics</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">qc_vars</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mt&#39;</span><span class="p">],</span> <span class="n">percent_top</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">log1p</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+  <span class="c1"># basic qc and pp</span>
+  <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">filter_cells</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">min_counts</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+  <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">normalize_per_cell</span><span class="p">(</span><span class="n">adata</span><span class="p">)</span>
+  <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">normalize_total</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">target_sum</span><span class="o">=</span><span class="mf">1e4</span><span class="p">)</span>
+  <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">filter_genes</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">min_cells</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+  <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">adata</span><span class="p">)</span>
+  <span class="c1">#save the log1p normalised matrix</span>
+  <span class="n">adata</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="s1">&#39;log1p&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+
+  <span class="n">adata</span> <span class="o">=</span> <span class="n">adata</span><span class="p">[</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;pct_counts_mt&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">,</span> <span class="n">adata</span><span class="o">.</span><span class="n">var</span><span class="p">[</span><span class="s1">&#39;mt&#39;</span><span class="p">]</span><span class="o">==</span><span class="kc">False</span><span class="p">]</span>
+  <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">filter_genes</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">min_cells</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># sanity cleaning</span>
+
+  <span class="c1"># select HVGs</span>
+  <span class="n">n_var_max</span> <span class="o">=</span> <span class="mi">2000</span>  <span class="c1"># max total features to select</span>
+
+  <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">highly_variable_genes</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">n_top_genes</span><span class="o">=</span><span class="n">n_var_max</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">flavor</span><span class="o">=</span><span class="s1">&#39;seurat_v3&#39;</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">)</span>
+  <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">pca</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">use_highly_variable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+  <span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">adata</span><span class="p">)</span>
+  <span class="n">adata</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;processed&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+  <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;good_coverage&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;good_coverage&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s2">&quot;category&quot;</span><span class="p">)</span>
+  <span class="n">adata</span><span class="o">.</span><span class="n">write_h5ad</span><span class="p">(</span><span class="n">loc</span><span class="o">+</span><span class="s2">&quot;files/adata_normalised.h5ad&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+The dataset is already processed. Skipping processing...
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;log_guide_UMI_count&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">log1p</span><span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;guide_UMI_count&quot;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[66]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># adata.write_csvs(loc+&#39;files/adata_normalised/&#39;)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pl</span><span class="o">.</span><span class="n">violin</span><span class="p">(</span>
+    <span class="n">adata</span><span class="p">,</span>
+    <span class="p">[</span><span class="s2">&quot;log_guide_UMI_count&quot;</span><span class="p">,</span><span class="s2">&quot;n_genes_by_counts&quot;</span><span class="p">,</span> <span class="s2">&quot;total_counts&quot;</span><span class="p">,</span> <span class="s2">&quot;pct_counts_mt&quot;</span><span class="p">],</span>
+    <span class="n">jitter</span><span class="o">=</span><span class="mf">0.4</span><span class="p">,</span>
+    <span class="n">multi_panel</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">save</span> <span class="o">=</span> <span class="s2">&quot;qc.png&quot;</span>
+<span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+WARNING: saving figure to file figures/violinqc.png
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/scripts_3_analysis_scripts_4_estatistic_gene_guide_6_1.png" src="../../_images/scripts_3_analysis_scripts_4_estatistic_gene_guide_6_1.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s2">&quot;highly_variable&quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="s2">&quot;pct_dropout_by_counts&quot;</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">var</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="n">new_palette</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[67]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+&lt;Axes: xlabel=&#39;highly_variable&#39;, ylabel=&#39;pct_dropout_by_counts&#39;&gt;
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/scripts_3_analysis_scripts_4_estatistic_gene_guide_7_1.png" src="../../_images/scripts_3_analysis_scripts_4_estatistic_gene_guide_7_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[68]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">list_twoprom</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s2">&quot;perturbation&quot;</span><span class="p">])[</span><span class="s2">&quot;promoter_type&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span> <span class="o">==</span> <span class="mi">2</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;two&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;perturbation&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isin</span><span class="p">(</span><span class="n">list_twoprom</span><span class="p">[</span><span class="n">list_twoprom</span><span class="o">==</span><span class="kc">True</span><span class="p">]</span><span class="o">.</span><span class="n">index</span><span class="p">)</span>
+<span class="c1">#apply the function to every gene that has both MP and AP promoter type</span>
+<span class="c1">#create a column to chekc if both AP and MP</span>
+<span class="n">perturb</span><span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;perturbation&quot;</span><span class="p">][(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;perturbation&quot;</span><span class="p">]</span><span class="o">!=</span><span class="s2">&quot;non-targeting&quot;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;two&quot;</span><span class="p">]</span><span class="o">==</span><span class="kc">True</span><span class="p">)]</span>
+<span class="n">perturb</span><span class="o">=</span><span class="n">perturb</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="c1">#choose the</span>
+<span class="n">grouping_variable</span><span class="o">=</span><span class="s2">&quot;guide_id&quot;</span>
+<span class="n">negative_control</span><span class="o">=</span><span class="s2">&quot;non-targeting_Control&quot;</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[69]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="k">try</span><span class="p">:</span>
+    <span class="c1">#read in the edistcsv</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">loc</span><span class="o">+</span><span class="s2">&quot;files/edist_perprom.csv&quot;</span><span class="p">,</span> <span class="n">index_col</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="n">df_list</span><span class="o">=</span><span class="p">[</span><span class="n">test_edist_perprom</span><span class="p">(</span><span class="n">adata</span><span class="p">,</span> <span class="n">gene</span><span class="p">,</span> <span class="n">grouping_variable</span><span class="p">,</span> <span class="n">negative_control</span><span class="p">)</span> <span class="k">for</span> <span class="n">gene</span> <span class="ow">in</span> <span class="n">perturb</span><span class="p">]</span>
+    <span class="c1">#flatten the df_list</span>
+    <span class="n">df</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">(</span><span class="n">df_list</span><span class="p">)</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">loc</span><span class="o">+</span><span class="s2">&quot;files/edist_perprom.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[70]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;pvalue&quot;</span><span class="p">]</span><span class="o">!=</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;gene&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;neglog10_pvalue_adj&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pvalue_adj&#39;</span><span class="p">])</span>
+<span class="c1">#import the gene to 5&#39; UTR annotation file</span>
+<span class="n">nterm</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">loc</span><span class="o">+</span><span class="s2">&quot;files/reference/all_pivot_simple_nterm.txt&quot;</span><span class="p">)</span>
+<span class="c1">#color the violin plot above with the 5&#39;UTR annotation</span>
+<span class="n">df</span><span class="o">=</span><span class="n">nterm</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">left_on</span><span class="o">=</span><span class="s2">&quot;Gene_symbol&quot;</span><span class="p">,</span><span class="n">right_on</span><span class="o">=</span><span class="s2">&quot;gene&quot;</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;edist&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;gene&quot;</span><span class="p">]</span>
+<span class="n">whippet</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_excel</span><span class="p">(</span><span class="s2">&quot;Supplementary_Information/Table_S4.xlsx&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">whippet</span><span class="p">,</span><span class="n">right_on</span><span class="o">=</span><span class="s2">&quot;gene&quot;</span><span class="p">,</span><span class="n">left_index</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[73]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><br/><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+
+<span class="n">scat</span><span class="o">=</span><span class="n">sns</span><span class="o">.</span><span class="n">scatterplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;successfulKD&quot;</span><span class="p">]</span><span class="o">==</span><span class="kc">True</span><span class="p">],</span> <span class="n">y</span><span class="o">=</span><span class="s1">&#39;neglog10_pvalue_adj&#39;</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;edist&#39;</span><span class="p">,</span> <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;significant_adj&#39;</span><span class="p">,</span>
+                     <span class="n">palette</span><span class="o">=</span><span class="p">{</span><span class="kc">True</span><span class="p">:</span> <span class="s1">&#39;tab:blue&#39;</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span> <span class="s1">&#39;tab:pink&#39;</span><span class="p">,</span> <span class="s1">&#39;Non-Targeting&#39;</span><span class="p">:</span> <span class="s1">&#39;tab:orange&#39;</span><span class="p">},</span> <span class="n">s</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;E-test results&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;E-distance from non-targeting&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s1">&#39;E-test neg log10 of adjusted p-value&#39;</span><span class="p">)</span>
+<span class="n">scat</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_loc</span><span class="o">+</span><span class="s2">&quot;etest_pvalue_adj.pdf&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/scripts_3_analysis_scripts_4_estatistic_gene_guide_11_0.png" src="../../_images/scripts_3_analysis_scripts_4_estatistic_gene_guide_11_0.png" />
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[74]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+<span class="c1">#put two colors d81b61 fec111</span>
+<span class="n">palette_new</span><span class="o">=</span><span class="p">{</span><span class="kc">True</span><span class="p">:</span> <span class="s2">&quot;#d81b61&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">:</span> <span class="s2">&quot;#fec111&quot;</span><span class="p">}</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">collections</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.8</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;successfulKD&quot;</span><span class="p">]</span><span class="o">==</span><span class="kc">True</span><span class="p">],</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;edist&#39;</span><span class="p">,</span> <span class="n">inner</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>  <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span>  <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;successfulKD&quot;</span><span class="p">]</span><span class="o">==</span><span class="kc">True</span><span class="p">],</span>   <span class="n">x</span><span class="o">=</span><span class="s1">&#39;edist&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span>  <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;significant_adj&#39;</span><span class="p">,</span><span class="n">dodge</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">palette</span><span class="o">=</span><span class="n">palette_new</span><span class="p">)</span>
+<span class="c1">#change it to jitter for labels</span>
+<span class="c1"># for i in df[df[&quot;gene&quot;].isin([&quot;BRIP1&quot;,&quot;MYBBP1A&quot;,&quot;ESR1&quot;,&quot;PSMC5&quot;])].sort_values(&quot;edist&quot;).tail(n=5).index:</span>
+<span class="c1">#     ax1.text(df.loc[i,&quot;edist&quot;]+0.01, 0.02,df.loc[i,&quot;gene&quot;], horizontalalignment=&#39;right&#39;, size=&#39;small&#39;, color=&#39;black&#39;)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;significant_adj&quot;</span><span class="p">]</span><span class="o">==</span><span class="kc">True</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;edist&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s2">&quot;edist&quot;</span><span class="p">]</span><span class="o">+</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">0.02</span><span class="p">,</span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="s2">&quot;gene&quot;</span><span class="p">],</span> <span class="n">horizontalalignment</span><span class="o">=</span><span class="s1">&#39;right&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="s1">&#39;small&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="n">rotation</span><span class="o">=</span><span class="mi">45</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1">#label esr1</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;E-Distance to Non-Targeting&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Distribution of E-Distances to Non-Targeting&#39;</span><span class="p">)</span>
+
+<span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_loc</span><span class="o">+</span><span class="s2">&quot;edistance_violinplot.pdf&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/scripts_3_analysis_scripts_4_estatistic_gene_guide_12_0.png" src="../../_images/scripts_3_analysis_scripts_4_estatistic_gene_guide_12_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[76]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">loc</span><span class="o">+</span><span class="s2">&quot;files/edist_results.csv&quot;</span><span class="p">)</span>
+<span class="c1">#extract the significant genes above</span>
+<span class="n">significant_genes</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;significant_adj&quot;</span><span class="p">]</span><span class="o">==</span><span class="kc">True</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;edist&quot;</span><span class="p">)</span>
+<span class="n">significant_genes</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">loc</span><span class="o">+</span><span class="s2">&quot;files/significant_genes.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[77]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">sns</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">&quot;whitegrid&quot;</span><span class="p">)</span>
+<span class="c1">#change palette_two 5UTR #2279b4 Nterminus #50bc83</span>
+<span class="n">palette_two</span><span class="o">=</span><span class="p">{</span><span class="kc">False</span><span class="p">:</span> <span class="s2">&quot;#2279b4&quot;</span><span class="p">,</span> <span class="kc">True</span><span class="p">:</span> <span class="s2">&quot;#50bc83&quot;</span><span class="p">}</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax</span><span class="o">.</span><span class="n">collections</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">.3</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="s1">&#39;edist&#39;</span><span class="p">,</span> <span class="n">inner</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;white&quot;</span><span class="p">,</span>  <span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">despine</span><span class="p">(</span><span class="n">trim</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">left</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">swarmplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">df</span><span class="p">,</span>  <span class="n">x</span><span class="o">=</span><span class="s1">&#39;edist&#39;</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">ax1</span><span class="p">,</span>  <span class="n">hue</span><span class="o">=</span><span class="s1">&#39;Nterminus_Change&#39;</span><span class="p">,</span><span class="n">dodge</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">palette</span><span class="o">=</span><span class="n">palette_two</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([</span><span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="s1">&#39;&#39;</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">bbox_to_anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">1.05</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span> <span class="n">loc</span><span class="o">=</span><span class="s1">&#39;upper left&#39;</span><span class="p">,</span> <span class="n">borderaxespad</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s1">&#39;E-Distance to Non-Targeting&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_loc</span><span class="o">+</span><span class="s2">&quot;edistance_violinplot_utr.pdf&quot;</span><span class="p">)</span>
+<br/><br/><br/><br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/scripts_3_analysis_scripts_4_estatistic_gene_guide_14_0.png" src="../../_images/scripts_3_analysis_scripts_4_estatistic_gene_guide_14_0.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[202]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#choose the</span>
+<span class="n">grouping_variable</span><span class="o">=</span><span class="s2">&quot;guide_id&quot;</span>
+<span class="n">negative_control</span><span class="o">=</span><span class="s2">&quot;non-targeting_Control&quot;</span>
+
+<span class="c1"># grouping_variable=&quot;guide_assignment&quot;</span>
+<span class="c1"># negative_control=&quot;non-targeting&quot;</span>
+<span class="n">adata_sgRNA</span><span class="o">=</span><span class="n">adata</span>
+<span class="n">adata_sgRNA</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;guide_assignment&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">adata_sgRNA</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;guide_target&quot;</span><span class="p">]</span><span class="o">==</span><span class="s2">&quot;non-targeting&quot;</span><span class="p">,</span><span class="s2">&quot;non-targeting&quot;</span><span class="p">,</span><span class="n">adata_sgRNA</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;guide_assignment&quot;</span><span class="p">])</span>
+<span class="n">data_sgRNA</span> <span class="o">=</span> <span class="n">scperturb</span><span class="o">.</span><span class="n">equal_subsampling</span><span class="p">(</span><span class="n">adata_sgRNA</span><span class="p">,</span> <span class="n">grouping_variable</span><span class="p">,</span> <span class="n">N_min</span><span class="o">=</span><span class="mi">80</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">filter_genes</span><span class="p">(</span><span class="n">data_sgRNA</span><span class="p">,</span> <span class="n">min_cells</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># sanity cleaning</span>
+
+<span class="c1"># select HVGs</span>
+<span class="n">n_var_max</span> <span class="o">=</span> <span class="mi">2000</span>  <span class="c1"># max total features to select</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">highly_variable_genes</span><span class="p">(</span><span class="n">data_sgRNA</span><span class="p">,</span> <span class="n">n_top_genes</span><span class="o">=</span><span class="n">n_var_max</span><span class="p">,</span> <span class="n">subset</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">flavor</span><span class="o">=</span><span class="s1">&#39;seurat_v3&#39;</span><span class="p">,</span> <span class="n">layer</span><span class="o">=</span><span class="s1">&#39;counts&#39;</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">pca</span><span class="p">(</span><span class="n">data_sgRNA</span><span class="p">,</span> <span class="n">use_highly_variable</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sc</span><span class="o">.</span><span class="n">pp</span><span class="o">.</span><span class="n">neighbors</span><span class="p">(</span><span class="n">data_sgRNA</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[103]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">estats</span> <span class="o">=</span> <span class="n">scperturb</span><span class="o">.</span><span class="n">edist</span><span class="p">(</span><span class="n">adata_sgRNA</span><span class="p">,</span><span class="n">obs_key</span><span class="o">=</span><span class="n">grouping_variable</span><span class="p">,</span> <span class="n">obsm_key</span><span class="o">=</span><span class="s1">&#39;X_pca&#39;</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="s1">&#39;sqeuclidean&#39;</span><span class="p">)</span>
+<br/></pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|██████████| 5886/5886 [00:18&lt;00:00, 322.32it/s]
+</pre></div></div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[104]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">df</span> <span class="o">=</span> <span class="n">scperturb</span><span class="o">.</span><span class="n">etest</span><span class="p">(</span><span class="n">adata_sgRNA</span><span class="p">,</span> <span class="n">obs_key</span><span class="o">=</span><span class="n">grouping_variable</span><span class="p">,</span> <span class="n">obsm_key</span><span class="o">=</span><span class="s1">&#39;X_pca&#39;</span><span class="p">,</span> <span class="n">dist</span><span class="o">=</span><span class="s1">&#39;sqeuclidean&#39;</span><span class="p">,</span> <span class="n">control</span><span class="o">=</span><span class="n">negative_control</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">runs</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area stderr docutils container">
+<div class="highlight"><pre>
+100%|██████████| 400/400 [08:42&lt;00:00,  1.31s/it]
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[99]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1">#filter df</span>
+<span class="n">df</span><span class="o">.</span><span class="n">to_csv</span><span class="p">(</span><span class="n">loc</span><span class="o">+</span><span class="s2">&quot;/files/singlecell_shortread_analysis/edistance_full.csv&quot;</span><span class="p">)</span>
+<span class="c1">#save two versions one per guide and one per perturbation</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">loc</span><span class="o">+</span><span class="s2">&quot;/files/singlecell_shortread_analysis/edistance_full.csv&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[92]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">index</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">estats</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">(),</span><span class="n">estats</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()))</span>
+<span class="n">columns</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">estats</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">(),</span><span class="n">estats</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">to_list</span><span class="p">()))</span>
+<span class="n">estats</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+<span class="n">estats</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">MultiIndex</span><span class="o">.</span><span class="n">from_tuples</span><span class="p">(</span><span class="n">columns</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">pl</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">order</span> <span class="o">=</span> <span class="n">estats</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span><span class="o">.</span><span class="n">index</span>
+<span class="n">order_estats</span><span class="o">=</span><span class="n">estats</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">order</span><span class="p">,</span> <span class="n">order</span><span class="p">]</span>
+<span class="n">order_estats</span><span class="o">.</span><span class="n">index</span> <span class="o">=</span> <span class="n">order_estats</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">droplevel</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">order_estats</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">order_estats</span><span class="o">.</span><span class="n">columns</span><span class="o">.</span><span class="n">droplevel</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">sns_plot</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">heatmap</span><span class="p">(</span><span class="n">order_estats</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">ax</span><span class="p">,</span> <span class="n">cbar_kws</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;label&#39;</span><span class="p">:</span> <span class="s1">&#39;E-distance&#39;</span><span class="p">})</span>
+<span class="c1">#save to pdf</span>
+<span class="n">fig_loc</span><span class="o">=</span><span class="s2">&quot;</span>
+<span class="n">sns_plot</span><span class="o">.</span><span class="n">figure</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="n">fig_loc</span><span class="o">+</span><span class="s2">&quot;edistance_heatmap.pdf&quot;</span><span class="p">)</span>
+
+
+<span class="n">ax</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">xlabel</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">ylabel</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[92]:
+</pre></div>
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+[Text(0.5, -26.570000000000004, &#39;&#39;), Text(-13.25, 0.5, &#39;&#39;)]
+</pre></div></div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<img alt="../../_images/scripts_3_analysis_scripts_4_estatistic_gene_guide_19_1.png" src="../../_images/scripts_3_analysis_scripts_4_estatistic_gene_guide_19_1.png" />
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># df.loc[df.index==&#39;non-targeting&#39;, &#39;significant_adj&#39;] = &#39;non-targeting&#39;</span>
+<span class="n">df</span><span class="p">[</span><span class="s1">&#39;neglog10_pvalue_adj&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log10</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;pvalue_adj&#39;</span><span class="p">])</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;significant_adj&quot;</span><span class="p">][</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">==</span><span class="n">negative_control</span><span class="p">]</span><span class="o">=</span><span class="s2">&quot;Non-Targeting&quot;</span>
+<span class="c1">#import the gene to 5&#39; UTR annotation file</span>
+<span class="n">nterm</span><span class="o">=</span><span class="n">pd</span><span class="o">.</span><span class="n">read_table</span><span class="p">(</span><span class="n">loc</span><span class="o">+</span><span class="s2">&quot;files/reference/all_pivot_simple_nterm.txt&quot;</span><span class="p">)</span>
+<span class="c1">#color the violin plot above with the 5&#39;UTR annotation</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;Gene_symbol&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">df</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="o">=</span><span class="n">df</span><span class="o">.</span><span class="n">index</span>
+<span class="n">df</span><span class="o">=</span><span class="n">nterm</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s2">&quot;Gene_symbol&quot;</span><span class="p">,</span><span class="n">how</span><span class="o">=</span><span class="s2">&quot;right&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s2">&quot;edist&quot;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">index</span><span class="o">=</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
+<br/><br/></pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="2B_guide_calling_cellrangerfilter4_idealguides.html" class="btn btn-neutral float-left" title="Guide Calling Using the Cellranger Module HDF5 File" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="5_genekd_neighbouring_gene_expression.html" class="btn btn-neutral float-right" title="Guide Calling Using the Cellranger Module HDF5 File" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2026, Helen King.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

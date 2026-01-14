@@ -8,7 +8,7 @@ Procedures for selecting ideal promoter-specific guides using FlashFry. We prior
 FlashFry Analysis
 -----------------
 * **FlashFry Dual-Guide Design Report**
-  `Visualize Report <../scripts/2_guide_design/2_FlashFry_dualguide.html>`_
-  | :download:`Download Raw HTML <../scripts/2_guide_design/2_FlashFry_dualguide.html>`
+  `Visualize Report <./scripts/2_guide_design/2_FlashFry_dualguide.html>`_
+  | :download:`Download Raw HTML <./scripts/2_guide_design/2_FlashFry_dualguide.html>`
 
 Refer to the internal ``README.md`` in the guide design folder for specific library construction details.
