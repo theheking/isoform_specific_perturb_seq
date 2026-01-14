@@ -18,7 +18,12 @@ author = 'Helen King'
 # extensions = [
 #     "sphinxcontrib.collections",
 # ]
-extensions = []
+extensions = [
+    'nbsphinx',            # This renders your .ipynb files
+    'sphinx.ext.mathjax',  # Renders math in notebooks
+    'sphinx.ext.napoleon', # Supports Google/NumPy style docstrings
+    'sphinx_copybutton',   # Adds a "copy" button to code blocks
+]
 
 templates_path = ['_templates']
 exclude_patterns = []
@@ -30,3 +35,4 @@ exclude_patterns = []
 
 html_theme = 'sphinx_rtd_theme'
 html_static_path = ['_static']
+nbsphinx_execute = 'never'
