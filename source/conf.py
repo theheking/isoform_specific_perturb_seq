@@ -19,11 +19,10 @@ author = 'Helen King'
 #     "sphinxcontrib.collections",
 # ]
 extensions = [
-    'nbsphinx',            # This renders your .ipynb files
-    'sphinx.ext.mathjax',  # Renders math in notebooks
-    'sphinx.ext.napoleon', # Supports Google/NumPy style docstrings
-    'sphinx_copybutton',   # Adds a "copy" button to code blocks
-    'sphinxcontrib.collections', # <--- Add this line
+    'nbsphinx',
+    'sphinx.ext.mathjax',
+    'sphinx.ext.napoleon',
+    'sphinx_copybutton'
 ]
 
 templates_path = ['_templates']

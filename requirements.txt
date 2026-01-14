@@ -1,4 +1,3 @@
 sphinx-rtd-theme
-sphinx-collections
 nbsphinx
 sphinx-copybutton
