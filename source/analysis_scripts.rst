@@ -67,20 +67,18 @@ Cell Phase & Pathway Modeling
   | :download:`Download .ipynb <scripts/3_analysis_scripts/9A_cnv_score.ipynb>`
 
 .. _clinical-de-scripts:
-
 Clinical & Differential Expression
 ----------------------------------
 
-* **Differential Expression:**
-  :doc:`Visualise Notebook <scripts/3_analysis_scripts/8_perturbseq_differentialexpression>`
-  | :download:`Download .ipynb <scripts/3_analysis_scripts/8_perturbseq_differentialexpression.ipynb>`
-
+* **Differential Expression:** :doc:`Visualize Notebook <./scripts/3_analysis_scripts/8_perturbseq_differentialexpression>` | :download:`Download .ipynb <./scripts/3_analysis_scripts/8_perturbseq_differentialexpression.ipynb>`
+* **Survival Curve Analysis:** :doc:`View Rmd <./scripts/3_analysis_scripts/10_survival_curve>` | :download:`Download .Rmd <./scripts/3_analysis_scripts/10_survival_curve.Rmd>`
 .. toctree::
    :hidden:
    :maxdepth: 1
 
    ../scripts/3_analysis_scripts/2A_cellranger_guidecalling.ipynb
    ../scripts/3_analysis_scripts/2B_guide_calling_cellrangerfilter4_idealguides.ipynb
+   ../scripts/3_analysis_scripts/3C_whippet_pseudobulk.Rmd
    ../scripts/3_analysis_scripts/4_estatistic_gene_guide.ipynb
    ../scripts/3_analysis_scripts/5_genekd_neighbouring_gene_expression.ipynb
    ../scripts/3_analysis_scripts/6_perturbseq_tsne_kldivergence_umap.ipynb
@@ -88,5 +86,6 @@ Clinical & Differential Expression
    ../scripts/3_analysis_scripts/8_perturbseq_differentialexpression.ipynb
    ../scripts/3_analysis_scripts/9A_cnv_score.ipynb
    ../scripts/3_analysis_scripts/9B_velocity_loom.ipynb
+   ../scripts/3_analysis_scripts/10_survival_curve.Rmd
    ../scripts/3_analysis_scripts/11_spectra.ipynb
    ../scripts/3_analysis_scripts/12_negativecontrol.ipynb
