@@ -32,9 +32,6 @@ Transcript Quantification
   :download:`3A_seperate_bam_file_ideal.sh <scripts/3_analysis_scripts/3A_seperate_bam_file_ideal.sh>`
 * **Whippet Pseudobulk Pipeline:**
   :download:`3B_whippet_pseudobulk.sh <scripts/3_analysis_scripts/3B_whippet_pseudobulk.sh>`
-* **Whippet Visualisation:**
-   :doc:`Visualise Notebook <scripts/3_analysis_scripts/3C_whippet_pseudobulk.html>`
-      :download:`3C_whippet_pseudobulk.html <scripts/3_analysis_scripts/3C_whippet_pseudobulk.html>`
 * **RNA Velocity (Loom Generation):**
   :doc:`Visualise Notebook <scripts/3_analysis_scripts/9B_velocity_loom>`
   | :download:`Download .ipynb <scripts/3_analysis_scripts/9B_velocity_loom.ipynb>`
@@ -77,9 +74,6 @@ Clinical & Differential Expression
 * **Differential Expression:**
   :doc:`Visualise Notebook <scripts/3_analysis_scripts/8_perturbseq_differentialexpression>`
   | :download:`Download .ipynb <scripts/3_analysis_scripts/8_perturbseq_differentialexpression.ipynb>`
-* **Survival Curve Analysis:**
-  :doc:`View html <scripts/3_analysis_scripts/10_survival_curve.html>`
-  | :download:`Download .html <scripts/3_analysis_scripts/10_survival_curve.html>`
 
 .. toctree::
    :hidden:
@@ -87,7 +81,6 @@ Clinical & Differential Expression
 
    ../scripts/3_analysis_scripts/2A_cellranger_guidecalling.ipynb
    ../scripts/3_analysis_scripts/2B_guide_calling_cellrangerfilter4_idealguides.ipynb
-   ../scripts/3_analysis_scripts/3C_whippet_pseudobulk.html
    ../scripts/3_analysis_scripts/4_estatistic_gene_guide.ipynb
    ../scripts/3_analysis_scripts/5_genekd_neighbouring_gene_expression.ipynb
    ../scripts/3_analysis_scripts/6_perturbseq_tsne_kldivergence_umap.ipynb
@@ -95,6 +88,5 @@ Clinical & Differential Expression
    ../scripts/3_analysis_scripts/8_perturbseq_differentialexpression.ipynb
    ../scripts/3_analysis_scripts/9A_cnv_score.ipynb
    ../scripts/3_analysis_scripts/9B_velocity_loom.ipynb
-   ../scripts/3_analysis_scripts/10_survival_curve.html
    ../scripts/3_analysis_scripts/11_spectra.ipynb
    ../scripts/3_analysis_scripts/12_negativecontrol.ipynb
