@@ -11,8 +11,7 @@ sphinx:
    configuration: source/conf.py
 
 formats:
-  - html
-  - ipynb
+  - pdf
 
 python:
   install:
