@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Guide Calling Using the Cellranger Module HDF5 File &mdash; Isoform Specific Perturb-Seq  documentation</title>
+  <title>Velocity and pyGSEA calculations of ESR1 &mdash; Isoform Specific Perturb-Seq  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -25,7 +25,9 @@
       <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Spectra Analysis" href="11_spectra.html" />
+    <link rel="prev" title="Investigating Copy Number Variation Across KD Populations" href="9A_cnv_score.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -48,10 +50,30 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Analysis Pipeline:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../promoter_identification.html">Promoter Identification</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../guide_design.html">Guide Design</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../analysis_scripts.html">Analysis Scripts &amp; Pipelines</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../analysis_scripts.html">Analysis Scripts &amp; Pipelines</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#preprocessing-guide-calling">Preprocessing &amp; Guide Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#splicing-rna-velocity">Splicing &amp; RNA Velocity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#transcriptional-divergence-e-stats">Transcriptional Divergence (E-Stats)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#cell-phase-pathway-modeling">Cell Phase &amp; Pathway Modeling</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../analysis_scripts.html#clinical-differential-expression">Clinical &amp; Differential Expression</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="2A_cellranger_guidecalling.html">Guide Calling for Dual Guides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2B_guide_calling_cellrangerfilter4_idealguides.html">Filtering for Cells with Ideal Combination of Guides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="4_estatistic_gene_guide.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="5_genekd_neighbouring_gene_expression.html">Target gene and neighbouring gene expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="6_perturbseq_tsne_kldivergence_umap.html">Quantitative individual UMAPs per gene of interest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="7_cellphase_model.html">Cell Assignment Model from FUCCI-Matched Single-Cell Paper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="8_perturbseq_differentialexpression.html">Differential Expression analysis between P1 &amp; P2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="9A_cnv_score.html">Investigating Copy Number Variation Across KD Populations</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Velocity and pyGSEA calculations of ESR1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="11_spectra.html">Spectra Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="12_negativecontrol.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
         </div>
@@ -68,7 +90,8 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Guide Calling Using the Cellranger Module HDF5 File</li>
+          <li class="breadcrumb-item"><a href="../../analysis_scripts.html">Analysis Scripts &amp; Pipelines</a></li>
+      <li class="breadcrumb-item active">Velocity and pyGSEA calculations of ESR1</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/scripts/3_analysis_scripts/9B_velocity_loom.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -78,10 +101,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="Guide-Calling-Using-the-Cellranger-Module-HDF5-File">
-<h1>Guide Calling Using the Cellranger Module HDF5 File<a class="headerlink" href="#Guide-Calling-Using-the-Cellranger-Module-HDF5-File" title="Link to this heading"></a></h1>
-<section id="Utilising-Direct-Capture-Perturb-Seq-to-Deciphering-Alternative-Promoter-Usage">
-<h2>Utilising Direct Capture Perturb-Seq to Deciphering Alternative Promoter Usage<a class="headerlink" href="#Utilising-Direct-Capture-Perturb-Seq-to-Deciphering-Alternative-Promoter-Usage" title="Link to this heading"></a></h2>
+  <section id="Velocity-and-pyGSEA-calculations-of-ESR1">
+<h1>Velocity and pyGSEA calculations of ESR1<a class="headerlink" href="#Velocity-and-pyGSEA-calculations-of-ESR1" title="Link to this heading"></a></h1>
 <ol class="arabic simple">
 <li><p>Run through the 10x Cellranger pipeline and velocyto for single cell RNAseq quatification and using (2) guides quantifiction. all found in the cellranger files folder <strong>bash</strong></p></li>
 <li><p>Guide Calling for dual guide. Use repogle method to take molecule.h5 generated by cellranger and py to run through repogle version of guide calling or use cellranger_guidecalling.ipynb for Direct Capture Perturb-Seq dual guide. Formed guide-specific lists of cells.</p></li>
@@ -95,6 +116,10 @@
 <li><p>ESR1-specific analysis from proliferation analysis to rt-qpcr</p></li>
 <li><p>Spectra analysis and visualisation for pathway enrichment</p></li>
 </ol>
+<p>The notebook focuses on RNA velocity analysis, which is a method used to predict the future state of individual cells based on the ratio of unspliced to spliced mRNA transcripts. In the context of this study, it helps determine the “transcriptional direction” or momentum of cells following promoter-specific perturbations.</p>
+<p>RNA velocity analysis requires quantifying two types of mRNA: spliced (mature) and unspliced (precursor).</p>
+<p>What is happening: The notebook utilizes the tool velocyto to process the raw BAM files generated by Cell Ranger into a .loom file format.</p>
+<p>The Logic: Unspliced mRNA represents “new” transcription, while spliced mRNA represents the current “pool” of mature transcripts. By comparing these, the model can infer whether a gene is being actively upregulated or downregulated in a specific cell.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -248,7 +273,7 @@ Scanpy 1.10.3
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_5_0.png" src="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_5_0.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_6_0.png" src="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_6_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -363,14 +388,14 @@ computing velocity embedding
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_8_2.png" src="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_8_2.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_9_2.png" src="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_9_2.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_8_3.png" src="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_8_3.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_9_3.png" src="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_9_3.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -422,7 +447,7 @@ saving figure to file ./figures/scvelo_output.svg
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_9_2.png" src="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_9_2.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_10_2.png" src="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_10_2.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -511,7 +536,7 @@ saving figure to file ./figures/scvelo_esr1_stream_pseudotime.pdf
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_9_5.png" src="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_9_5.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_10_5.png" src="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_10_5.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -656,7 +681,7 @@ INFO:fontTools.subset:name pruned
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_10_1.png" src="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_10_1.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_11_1.png" src="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_11_1.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -795,7 +820,7 @@ INFO:fontTools.subset:name pruned
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_11_1.png" src="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_11_1.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_12_1.png" src="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_12_1.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -934,60 +959,18 @@ INFO:fontTools.subset:name pruned
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_12_1.png" src="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_12_1.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_13_1.png" src="../../_images/scripts_3_analysis_scripts_9B_velocity_loom_13_1.png" />
 </div>
 </div>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[65]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># get deg result</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">adata_esr1</span><span class="o">.</span><span class="n">uns</span><span class="p">[</span><span class="s1">&#39;rank_genes_groups&#39;</span><span class="p">]</span>
-<span class="n">groups</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="s1">&#39;names&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">dtype</span><span class="o">.</span><span class="n">names</span>
-<span class="n">degs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span>
-    <span class="p">{</span><span class="n">group</span> <span class="o">+</span> <span class="s1">&#39;_&#39;</span> <span class="o">+</span> <span class="n">key</span><span class="p">:</span> <span class="n">result</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="n">group</span><span class="p">]</span>
-    <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groups</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;names&#39;</span><span class="p">,</span><span class="s1">&#39;scores&#39;</span><span class="p">,</span> <span class="s1">&#39;pvals&#39;</span><span class="p">,</span><span class="s1">&#39;pvals_adj&#39;</span><span class="p">,</span><span class="s1">&#39;logfoldchanges&#39;</span><span class="p">]})</span>
-
-<span class="c1"># subset up or down regulated genes</span>
-<span class="n">degs_sig</span> <span class="o">=</span> <span class="n">degs</span><span class="p">[</span><span class="n">degs</span><span class="o">.</span><span class="n">ESR1_AP_pvals</span> <span class="o">&lt;</span> <span class="mf">0.05</span><span class="p">]</span>
-<span class="n">degs_up</span> <span class="o">=</span> <span class="n">degs_sig</span><span class="p">[</span><span class="n">degs_sig</span><span class="o">.</span><span class="n">ESR1_AP_logfoldchanges</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
-<span class="n">degs_dw</span> <span class="o">=</span> <span class="n">degs_sig</span><span class="p">[</span><span class="n">degs_sig</span><span class="o">.</span><span class="n">ESR1_AP_logfoldchanges</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span>
-<span class="c1"># Enricr API</span>
-<span class="n">enr_up</span> <span class="o">=</span> <span class="n">gp</span><span class="o">.</span><span class="n">enrichr</span><span class="p">(</span><span class="n">degs_up</span><span class="o">.</span><span class="n">ESR1_AP_names</span><span class="p">,</span>
-                    <span class="n">gene_sets</span><span class="o">=</span><span class="s1">&#39;GO_Biological_Process_2021&#39;</span><span class="p">,</span>
-                    <span class="n">outdir</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-<span class="n">enr_up</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span> <span class="o">=</span> <span class="n">enr_up</span><span class="o">.</span><span class="n">res2d</span><span class="o">.</span><span class="n">Term</span><span class="o">.</span><span class="n">str</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot; \(GO&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-
-<span class="n">gp</span><span class="o">.</span><span class="n">dotplot</span><span class="p">(</span><span class="n">enr_up</span><span class="o">.</span><span class="n">res2d</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">5</span><span class="p">),</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Up&quot;</span><span class="p">,</span> <span class="n">cmap</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">cm</span><span class="o">.</span><span class="n">autumn_r</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-<br/></pre></div>
-</div>
-</div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
-</div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">KeyError</span>                                  Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[65], line 2</span>
-<span class="ansi-green-intense-fg ansi-bold">      1</span> <span style="color: rgb(95,135,135)"># get deg result</span>
-<span class="ansi-green-fg">----&gt; 2</span> result <span style="color: rgb(98,98,98)">=</span> <span class="ansi-yellow-bg">adata_esr1</span><span class="ansi-yellow-bg" style="color: rgb(98,98,98)">.</span><span class="ansi-yellow-bg">uns</span><span class="ansi-yellow-bg">[</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">&#39;</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">rank_genes_groups</span><span class="ansi-yellow-bg" style="color: rgb(175,0,0)">&#39;</span><span class="ansi-yellow-bg">]</span>
-<span class="ansi-green-intense-fg ansi-bold">      3</span> groups <span style="color: rgb(98,98,98)">=</span> result[<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">names</span><span style="color: rgb(175,0,0)">&#39;</span>]<span style="color: rgb(98,98,98)">.</span>dtype<span style="color: rgb(98,98,98)">.</span>names
-<span class="ansi-green-intense-fg ansi-bold">      4</span> degs <span style="color: rgb(98,98,98)">=</span> pd<span style="color: rgb(98,98,98)">.</span>DataFrame(
-<span class="ansi-green-intense-fg ansi-bold">      5</span>     {group <span style="color: rgb(98,98,98)">+</span> <span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">_</span><span style="color: rgb(175,0,0)">&#39;</span> <span style="color: rgb(98,98,98)">+</span> key: result[key][group]
-<span class="ansi-green-intense-fg ansi-bold">      6</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> group <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> groups <span class="ansi-bold" style="color: rgb(0,135,0)">for</span> key <span class="ansi-bold" style="color: rgb(175,0,255)">in</span> [<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">names</span><span style="color: rgb(175,0,0)">&#39;</span>,<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">scores</span><span style="color: rgb(175,0,0)">&#39;</span>, <span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">pvals</span><span style="color: rgb(175,0,0)">&#39;</span>,<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">pvals_adj</span><span style="color: rgb(175,0,0)">&#39;</span>,<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">logfoldchanges</span><span style="color: rgb(175,0,0)">&#39;</span>]})
-
-<span class="ansi-red-fg">KeyError</span>: &#39;rank_genes_groups&#39;
-</pre></div></div>
-</div>
-</section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="9A_cnv_score.html" class="btn btn-neutral float-left" title="Investigating Copy Number Variation Across KD Populations" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="11_spectra.html" class="btn btn-neutral float-right" title="Spectra Analysis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 

@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Guide Calling Using the Cellranger Module HDF5 File &mdash; Isoform Specific Perturb-Seq  documentation</title>
+  <title>Investigating Copy Number Variation Across KD Populations &mdash; Isoform Specific Perturb-Seq  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -26,8 +26,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="GEPIA2 Run Through" href="10D_esr1_survival_curve.html" />
-    <link rel="prev" title="Guide Calling Using the Cellranger Module HDF5 File" href="8_perturbseq_differentialexpression.html" /> 
+    <link rel="next" title="Velocity and pyGSEA calculations of ESR1" href="9B_velocity_loom.html" />
+    <link rel="prev" title="Differential Expression analysis between P1 &amp; P2" href="8_perturbseq_differentialexpression.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,22 +55,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../../guide_design.html">Guide Design</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../analysis_scripts.html">Analysis Scripts &amp; Pipelines</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#preprocessing-guide-calling">Preprocessing &amp; Guide Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#splicing-rna-velocity">Splicing &amp; RNA Velocity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#transcriptional-divergence-e-stats">Transcriptional Divergence (E-Stats)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#cell-phase-pathway-modeling">Cell Phase &amp; Pathway Modeling</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../analysis_scripts.html#clinical-differential-expression">Clinical &amp; Differential Expression</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="2A_cellranger_guidecalling.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="2B_guide_calling_cellrangerfilter4_idealguides.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2A_cellranger_guidecalling.html">Guide Calling for Dual Guides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2B_guide_calling_cellrangerfilter4_idealguides.html">Filtering for Cells with Ideal Combination of Guides</a></li>
 <li class="toctree-l3"><a class="reference internal" href="4_estatistic_gene_guide.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="5_genekd_neighbouring_gene_expression.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="6_perturbseq_tsne_kldivergence_umap.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="7A_cellphase_model.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="8_perturbseq_differentialexpression.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Guide Calling Using the Cellranger Module HDF5 File</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Utilising-Direct-Capture-Perturb-Seq-to-Deciphering-Alternative-Promoter-Usage">Utilising Direct Capture Perturb-Seq to Deciphering Alternative Promoter Usage</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="10D_esr1_survival_curve.html">GEPIA2 Run Through</a></li>
-<li class="toctree-l3"><a class="reference internal" href="11A_spectra.html">Spectra Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="5_genekd_neighbouring_gene_expression.html">Target gene and neighbouring gene expression</a></li>
+<li class="toctree-l3"><a class="reference internal" href="6_perturbseq_tsne_kldivergence_umap.html">Quantitative individual UMAPs per gene of interest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="7_cellphase_model.html">Cell Assignment Model from FUCCI-Matched Single-Cell Paper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="8_perturbseq_differentialexpression.html">Differential Expression analysis between P1 &amp; P2</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Investigating Copy Number Variation Across KD Populations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="9B_velocity_loom.html">Velocity and pyGSEA calculations of ESR1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="11_spectra.html">Spectra Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="12_negativecontrol.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
 </ul>
 </li>
 </ul>
@@ -92,7 +91,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../analysis_scripts.html">Analysis Scripts &amp; Pipelines</a></li>
-      <li class="breadcrumb-item active">Guide Calling Using the Cellranger Module HDF5 File</li>
+      <li class="breadcrumb-item active">Investigating Copy Number Variation Across KD Populations</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/scripts/3_analysis_scripts/9A_cnv_score.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -102,10 +101,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="Guide-Calling-Using-the-Cellranger-Module-HDF5-File">
-<h1>Guide Calling Using the Cellranger Module HDF5 File<a class="headerlink" href="#Guide-Calling-Using-the-Cellranger-Module-HDF5-File" title="Link to this heading"></a></h1>
-<section id="Utilising-Direct-Capture-Perturb-Seq-to-Deciphering-Alternative-Promoter-Usage">
-<h2>Utilising Direct Capture Perturb-Seq to Deciphering Alternative Promoter Usage<a class="headerlink" href="#Utilising-Direct-Capture-Perturb-Seq-to-Deciphering-Alternative-Promoter-Usage" title="Link to this heading"></a></h2>
+  <section id="Investigating-Copy-Number-Variation-Across-KD-Populations">
+<h1>Investigating Copy Number Variation Across KD Populations<a class="headerlink" href="#Investigating-Copy-Number-Variation-Across-KD-Populations" title="Link to this heading"></a></h1>
 <ol class="arabic simple">
 <li><p>Run through the 10x Cellranger pipeline and velocyto for single cell RNAseq quatification and using (2) guides quantifiction. all found in the cellranger files folder <strong>bash</strong></p></li>
 <li><p>Guide Calling for dual guide. Use repogle method to take molecule.h5 generated by cellranger and py to run through repogle version of guide calling or use cellranger_guidecalling.ipynb for Direct Capture Perturb-Seq dual guide. Formed guide-specific lists of cells.</p></li>
@@ -119,13 +116,22 @@
 <li><p>ESR1-specific analysis from proliferation analysis to rt-qpcr</p></li>
 <li><p>Spectra analysis and visualisation for pathway enrichment</p></li>
 </ol>
-<div class="nbinput docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+<p>This script is dedicated to the chromosomal analysis part of the study. Specifically, it uses single-cell RNA sequencing (scRNA-seq) data to infer Copy Number Variations (CNVs)—large-scale chromosomal gains or losses—to understand how different promoter knockdowns impact genomic stability in breast cancer cells.</p>
+<p>Inferring Chromosomal Changes from Gene Expression Since the study uses scRNA-seq rather than DNA sequencing, it employs a tool called inferCNV to estimate chromosomal changes.</p>
+<p>What is happening: The code computes a rolling average of gene expression across genomic windows (typically 100 genes).</p>
+<p>The Logic: If a large block of adjacent genes shows consistently higher or lower expression compared to a reference set, the model infers a chromosomal gain or loss in that region</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">load_ext</span> autoreload
 <span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="o">%</span><span class="k">autoreload</span> 2
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">infercnvpy_test</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
+
 <span class="c1">#general</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">scanpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sc</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pl</span>
@@ -209,38 +215,22 @@
 </pre></div>
 </div>
 </div>
-<div class="nboutput nblast docutils container">
-<div class="prompt empty docutils container">
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
+</pre></div>
 </div>
-<div class="output_area docutils container">
-<div class="highlight"><pre>
-<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
-<span class="ansi-red-fg">ModuleNotFoundError</span>                       Traceback (most recent call last)
-Cell <span class="ansi-green-fg">In[1], line 20</span>
-<span class="ansi-green-intense-fg ansi-bold">     18</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> <span class="ansi-bold" style="color: rgb(0,0,255)">sys</span>
-<span class="ansi-green-intense-fg ansi-bold">     19</span> sys<span style="color: rgb(98,98,98)">.</span>path<span style="color: rgb(98,98,98)">.</span>append(loc<span style="color: rgb(98,98,98)">+</span><span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">scripts/</span><span style="color: rgb(175,0,0)">&#39;</span>)
-<span class="ansi-green-fg">---&gt; 20</span> <span class="ansi-bold" style="color: rgb(0,135,0)">from</span> <span class="ansi-bold" style="color: rgb(0,0,255)">apu_analysis</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> <span style="color: rgb(98,98,98)">*</span>
-<span class="ansi-green-intense-fg ansi-bold">     21</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> <span class="ansi-bold" style="color: rgb(0,0,255)">scperturb</span>
-<span class="ansi-green-intense-fg ansi-bold">     22</span> <span class="ansi-bold" style="color: rgb(0,135,0)">import</span> <span class="ansi-bold" style="color: rgb(0,0,255)">infercnvpy</span> <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> <span class="ansi-bold" style="color: rgb(0,0,255)">cnv</span>
-
-<span class="ansi-red-fg">ModuleNotFoundError</span>: No module named &#39;apu_analysis&#39;
-</pre></div></div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
 </div>
 <div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[ ]:
 </pre></div>
 </div>
 <div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span> <span class="o">=</span> <span class="n">ad</span><span class="o">.</span><span class="n">read_h5ad</span><span class="p">(</span><span class="n">loc</span><span class="o">+</span><span class="s2">&quot;files/adata_normalised.h5ad&quot;</span><span class="p">)</span>
 <span class="c1">#set the log1p</span>
 <span class="c1"># adata.X = adata.layers[&quot;raw&quot;]</span>
-</pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">adata</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="s2">&quot;counts&quot;</span><span class="p">]</span>
+<span class="n">adata</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">adata</span><span class="o">.</span><span class="n">layers</span><span class="p">[</span><span class="s2">&quot;counts&quot;</span><span class="p">]</span>
 </pre></div>
 </div>
 </div>
@@ -348,14 +338,14 @@ Cell <span class="ansi-green-fg">In[1], line 20</span>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_9A_cnv_score_7_1.png" src="../../_images/scripts_3_analysis_scripts_9A_cnv_score_7_1.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_9A_cnv_score_8_1.png" src="../../_images/scripts_3_analysis_scripts_9A_cnv_score_8_1.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_9A_cnv_score_7_2.png" src="../../_images/scripts_3_analysis_scripts_9A_cnv_score_7_2.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_9A_cnv_score_8_2.png" src="../../_images/scripts_3_analysis_scripts_9A_cnv_score_8_2.png" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -452,7 +442,7 @@ Cell <span class="ansi-green-fg">In[1], line 20</span>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_9A_cnv_score_11_0.png" src="../../_images/scripts_3_analysis_scripts_9A_cnv_score_11_0.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_9A_cnv_score_12_0.png" src="../../_images/scripts_3_analysis_scripts_9A_cnv_score_12_0.png" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -466,19 +456,6 @@ Cell <span class="ansi-green-fg">In[1], line 20</span>
 <span class="n">ar_not_in</span><span class="o">=</span><span class="n">ar_adata_notin</span><span class="p">[(</span><span class="n">ar_adata_notin</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;promoter_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Control&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">ar_adata_notin</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;perturbation&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;ESR1&quot;</span><span class="p">)]</span>
 <span class="n">ar</span><span class="o">=</span><span class="n">ar_adata</span><span class="p">[(</span><span class="n">ar_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;promoter_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Control&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">ar_adata</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;perturbation&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;ESR1&quot;</span><span class="p">)]</span>
 <span class="n">esr1_full</span><span class="o">=</span><span class="n">adata_ens</span><span class="p">[(</span><span class="n">adata_ens</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;promoter_type&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;Control&quot;</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="n">adata_ens</span><span class="o">.</span><span class="n">obs</span><span class="p">[</span><span class="s2">&quot;perturbation&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="s2">&quot;ESR1&quot;</span><span class="p">)]</span>
-<br/></pre></div>
-</div>
-</div>
-<div class="nbinput nblast docutils container">
-<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[18]:
-</pre></div>
-</div>
-<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">reload_ext</span> autoreload
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="o">%</span><span class="k">autoreload</span> 2
-<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">loc</span><span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">infercnvpy_test</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 <br/></pre></div>
 </div>
 </div>
@@ -1673,6 +1650,12 @@ P4HB
 WARNING: X_cnv_pca not found in adata.obsm. Computing PCA with default parameters
 </pre></div></div>
 </div>
+<p>Identifying Promoter-Specific Genomic Instability A major biological finding in the paper is that different promoters of the same gene can have vastly different effects on genomic integrity.</p>
+<p>The ESR1 Discovery: The notebook compares CNV scores between the P1 and P2 knockdowns of the estrogen receptor gene (ESR1).</p>
+<p>Result Found: Knocking down the P2 promoter of ESR1 led to a significant increase in CNVs among cell cycle-related genes compared to P1 and control populations (<span class="math notranslate nohighlight">\(p &lt; 1.1 \times 10^{-7}\)</span>)77.</p>
+<p>Statistical Validation of CNV Differences To ensure these inferred changes are statistically robust, the notebook applies several tests:</p>
+<p>Wilcoxon Rank Sum Test: Used to determine if the distribution of CNV scores in P2-knockdown cells is significantly higher than in P1 or NTC (Non-Targeting Control) cells.</p>
+<p>Effect Size Calculation: The code calculates metrics like Cliff’s delta and Vargha and Delaney’s A to quantify the magnitude of the difference in genomic instability between the different promoter-targeted populations</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[28]:
 </pre></div>
@@ -1703,7 +1686,7 @@ WARNING: X_cnv_pca not found in adata.obsm. Computing PCA with default parameter
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_9A_cnv_score_17_1.png" src="../../_images/scripts_3_analysis_scripts_9A_cnv_score_17_1.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_9A_cnv_score_18_1.png" src="../../_images/scripts_3_analysis_scripts_9A_cnv_score_18_1.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -1726,7 +1709,7 @@ WARNING: saving figure to file figures/heatmapesr1_full.pdf
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_9A_cnv_score_17_4.png" src="../../_images/scripts_3_analysis_scripts_9A_cnv_score_17_4.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_9A_cnv_score_18_4.png" src="../../_images/scripts_3_analysis_scripts_9A_cnv_score_18_4.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -1742,7 +1725,7 @@ WARNING: saving figure to file figures/heatmapesr1_full.pdf
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_9A_cnv_score_18_0.png" src="../../_images/scripts_3_analysis_scripts_9A_cnv_score_18_0.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_9A_cnv_score_19_0.png" src="../../_images/scripts_3_analysis_scripts_9A_cnv_score_19_0.png" />
 </div>
 </div>
 <div class="nboutput docutils container">
@@ -1765,7 +1748,7 @@ WARNING: saving figure to file figures/heatmapesr1_full.pdf
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_9A_cnv_score_18_3.png" src="../../_images/scripts_3_analysis_scripts_9A_cnv_score_18_3.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_9A_cnv_score_19_3.png" src="../../_images/scripts_3_analysis_scripts_9A_cnv_score_19_3.png" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -1781,14 +1764,13 @@ WARNING: saving figure to file figures/heatmapesr1_full.pdf
 </div>
 </div>
 </section>
-</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="8_perturbseq_differentialexpression.html" class="btn btn-neutral float-left" title="Guide Calling Using the Cellranger Module HDF5 File" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="10D_esr1_survival_curve.html" class="btn btn-neutral float-right" title="GEPIA2 Run Through" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="8_perturbseq_differentialexpression.html" class="btn btn-neutral float-left" title="Differential Expression analysis between P1 &amp; P2" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="9B_velocity_loom.html" class="btn btn-neutral float-right" title="Velocity and pyGSEA calculations of ESR1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

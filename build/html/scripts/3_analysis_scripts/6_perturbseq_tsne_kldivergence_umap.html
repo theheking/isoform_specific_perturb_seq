@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Guide Calling Using the Cellranger Module HDF5 File &mdash; Isoform Specific Perturb-Seq  documentation</title>
+  <title>Quantitative individual UMAPs per gene of interest &mdash; Isoform Specific Perturb-Seq  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -26,8 +26,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Guide Calling Using the Cellranger Module HDF5 File" href="7A_cellphase_model.html" />
-    <link rel="prev" title="Guide Calling Using the Cellranger Module HDF5 File" href="5_genekd_neighbouring_gene_expression.html" /> 
+    <link rel="next" title="Cell Assignment Model from FUCCI-Matched Single-Cell Paper" href="7_cellphase_model.html" />
+    <link rel="prev" title="Target gene and neighbouring gene expression" href="5_genekd_neighbouring_gene_expression.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -55,22 +55,21 @@
 <li class="toctree-l1"><a class="reference internal" href="../../guide_design.html">Guide Design</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../analysis_scripts.html">Analysis Scripts &amp; Pipelines</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#preprocessing-guide-calling">Preprocessing &amp; Guide Calling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#splicing-rna-velocity">Splicing &amp; RNA Velocity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#transcriptional-divergence-e-stats">Transcriptional Divergence (E-Stats)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#cell-phase-pathway-modeling">Cell Phase &amp; Pathway Modeling</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="../../analysis_scripts.html#clinical-differential-expression">Clinical &amp; Differential Expression</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="2A_cellranger_guidecalling.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="2B_guide_calling_cellrangerfilter4_idealguides.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2A_cellranger_guidecalling.html">Guide Calling for Dual Guides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="2B_guide_calling_cellrangerfilter4_idealguides.html">Filtering for Cells with Ideal Combination of Guides</a></li>
 <li class="toctree-l3"><a class="reference internal" href="4_estatistic_gene_guide.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="5_genekd_neighbouring_gene_expression.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Guide Calling Using the Cellranger Module HDF5 File</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Utilising-Direct-Capture-Perturb-Seq-to-Deciphering-Alternative-Promoter-Usage">Utilising Direct Capture Perturb-Seq to Deciphering Alternative Promoter Usage</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="7A_cellphase_model.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="8_perturbseq_differentialexpression.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="9A_cnv_score.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="10D_esr1_survival_curve.html">GEPIA2 Run Through</a></li>
-<li class="toctree-l3"><a class="reference internal" href="11A_spectra.html">Spectra Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="5_genekd_neighbouring_gene_expression.html">Target gene and neighbouring gene expression</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Quantitative individual UMAPs per gene of interest</a></li>
+<li class="toctree-l3"><a class="reference internal" href="7_cellphase_model.html">Cell Assignment Model from FUCCI-Matched Single-Cell Paper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="8_perturbseq_differentialexpression.html">Differential Expression analysis between P1 &amp; P2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="9A_cnv_score.html">Investigating Copy Number Variation Across KD Populations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="9B_velocity_loom.html">Velocity and pyGSEA calculations of ESR1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="11_spectra.html">Spectra Analysis</a></li>
+<li class="toctree-l3"><a class="reference internal" href="12_negativecontrol.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
 </ul>
 </li>
 </ul>
@@ -92,7 +91,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../analysis_scripts.html">Analysis Scripts &amp; Pipelines</a></li>
-      <li class="breadcrumb-item active">Guide Calling Using the Cellranger Module HDF5 File</li>
+      <li class="breadcrumb-item active">Quantitative individual UMAPs per gene of interest</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/scripts/3_analysis_scripts/6_perturbseq_tsne_kldivergence_umap.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -102,10 +101,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="Guide-Calling-Using-the-Cellranger-Module-HDF5-File">
-<h1>Guide Calling Using the Cellranger Module HDF5 File<a class="headerlink" href="#Guide-Calling-Using-the-Cellranger-Module-HDF5-File" title="Link to this heading"></a></h1>
-<section id="Utilising-Direct-Capture-Perturb-Seq-to-Deciphering-Alternative-Promoter-Usage">
-<h2>Utilising Direct Capture Perturb-Seq to Deciphering Alternative Promoter Usage<a class="headerlink" href="#Utilising-Direct-Capture-Perturb-Seq-to-Deciphering-Alternative-Promoter-Usage" title="Link to this heading"></a></h2>
+  <section id="Quantitative-individual-UMAPs-per-gene-of-interest">
+<h1>Quantitative individual UMAPs per gene of interest<a class="headerlink" href="#Quantitative-individual-UMAPs-per-gene-of-interest" title="Link to this heading"></a></h1>
 <ol class="arabic simple">
 <li><p>Run through the 10x Cellranger pipeline and velocyto for single cell RNAseq quatification and using (2) guides quantifiction. all found in the cellranger files folder <strong>bash</strong></p></li>
 <li><p>Guide Calling for dual guide. Use repogle method to take molecule.h5 generated by cellranger and py to run through repogle version of guide calling or use cellranger_guidecalling.ipynb for Direct Capture Perturb-Seq dual guide. Formed guide-specific lists of cells.</p></li>
@@ -119,6 +116,10 @@
 <li><p>ESR1-specific analysis from proliferation analysis to rt-qpcr</p></li>
 <li><p>Spectra analysis and visualisation for pathway enrichment</p></li>
 </ol>
+<p>This script focuses on using unsupervised learning and information theory to prove that alternative promoters drive distinct transcriptional states.</p>
+<p>Visualization of Transcriptional Landscapes (UMAP &amp; t-SNE) The primary goal of this notebook is to visualize how cells cluster based on which promoter (P1 or P2) was targeted.</p>
+<p>What is happening: The code performs high-dimensional reduction using UMAP (Uniform Manifold Approximation and Projection) and t-SNE (t-distributed Stochastic Neighbor Embedding).</p>
+<p>The Logic: If the two promoters were redundant, their respective cell populations would overlap completely. Instead, for genes like ESR1, BRIP1, and MYBB1A, the notebook generates plots showing cells segregating into distinct “clouds” or gradients based on the promoter knockdown</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
 </pre></div>
@@ -253,14 +254,14 @@ Scanpy 1.10.3
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_3_0.png" src="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_3_0.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_4_0.png" src="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_4_0.png" />
 </div>
 </div>
 <div class="nboutput nblast docutils container">
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_3_1.png" src="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_3_1.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_4_1.png" src="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_4_1.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -317,7 +318,7 @@ WARNING:matplotlib.text:posx and posy should be finite values
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_4_1.png" src="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_4_1.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_5_1.png" src="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_5_1.png" />
 </div>
 </div>
 <div class="nbinput nblast docutils container">
@@ -485,6 +486,9 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 </pre></div>
 </div>
 </div>
+<p>Quantifying Separation with Rand Index and Mutual Information To move beyond visual interpretation, the notebook uses rigorous statistical metrics to quantify how “different” the P1 and P2 populations really are.</p>
+<p>Rand Index (Adjusted Rand Score): This measures the similarity between the “ground truth” (which promoter was targeted) and unsupervised clusters. A higher score confirms that the transcriptomic differences are strong enough for an algorithm to “guess” the targeted promoter.</p>
+<p>Mutual Information (MI): This information-theory metric quantifies the amount of information obtained about the promoter perturbation by observing the cell’s transcriptome.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
 </pre></div>
@@ -510,7 +514,7 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_11_0.png" src="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_11_0.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_13_0.png" src="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_13_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -592,18 +596,17 @@ Categories (50, object): [&#39;ADAR&#39;, &#39;AHCYL1&#39;, &#39;APP&#39;, &#39;
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_14_0.png" src="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_14_0.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_16_0.png" src="../../_images/scripts_3_analysis_scripts_6_perturbseq_tsne_kldivergence_umap_16_0.png" />
 </div>
 </div>
-</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="5_genekd_neighbouring_gene_expression.html" class="btn btn-neutral float-left" title="Guide Calling Using the Cellranger Module HDF5 File" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="7A_cellphase_model.html" class="btn btn-neutral float-right" title="Guide Calling Using the Cellranger Module HDF5 File" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="5_genekd_neighbouring_gene_expression.html" class="btn btn-neutral float-left" title="Target gene and neighbouring gene expression" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="7_cellphase_model.html" class="btn btn-neutral float-right" title="Cell Assignment Model from FUCCI-Matched Single-Cell Paper" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
