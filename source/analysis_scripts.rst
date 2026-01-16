@@ -18,10 +18,9 @@ Preprocessing & Guide Calling
    scripts/3_analysis_scripts/2B_guide_calling_cellrangerfilter4_idealguides.ipynb
    scripts/3_analysis_scripts/12_negativecontrol.ipynb
 
+**Additional Files:**
+
 * **Shell Pipeline:** :download:`1_cellranger.sh <scripts/3_analysis_scripts/1_cellranger.sh>`
-* **Downloads:** :download:`2A (.ipynb) <scripts/3_analysis_scripts/2A_cellranger_guidecalling.ipynb>` | 
-  :download:`2B (.ipynb) <scripts/3_analysis_scripts/2B_guide_calling_cellrangerfilter4_idealguides.ipynb>` |
-  :download:`12 (.ipynb) <scripts/3_analysis_scripts/12_negativecontrol.ipynb>` 
 
 .. _transcript-scripts:
 
@@ -33,8 +32,9 @@ Transcript Quantification
 
    scripts/3_analysis_scripts/3C_whippet_pseudobulk
 
+**Additional Files:**
+
 * **Shell Scripts:** :download:`3A_seperate_bam_file_ideal.sh <scripts/3_analysis_scripts/3A_seperate_bam_file_ideal.sh>` | :download:`3B_whippet_pseudobulk.sh <scripts/3_analysis_scripts/3B_whippet_pseudobulk.sh>`
-* **HTML:** :download:`3C (.html) <scripts/3_analysis_scripts/3C_whippet_pseudobulk.html>`
 
 .. _estat-scripts:
 
@@ -49,11 +49,6 @@ Transcriptional Divergence (E-Stats & Differential Expression)
    scripts/3_analysis_scripts/6_perturbseq_tsne_kldivergence_umap.ipynb
    scripts/3_analysis_scripts/8_perturbseq_differentialexpression.ipynb
 
-* **Downloads:** :download:`4 (.ipynb) <scripts/3_analysis_scripts/4_estatistic_gene_guide.ipynb>` | 
-  :download:`5 (.ipynb) <scripts/3_analysis_scripts/5_genekd_neighbouring_gene_expression.ipynb>` | 
-  :download:`6 (.ipynb) <scripts/3_analysis_scripts/6_perturbseq_tsne_kldivergence_umap.ipynb>` | 
-  :download:`8 (.ipynb) <scripts/3_analysis_scripts/8_perturbseq_differentialexpression.ipynb>`
-
 .. _cellphase-pathway-scripts:
 
 Cell Phase & Pathway Modeling
@@ -67,11 +62,6 @@ Cell Phase & Pathway Modeling
    scripts/3_analysis_scripts/9B_velocity_loom.ipynb
    scripts/3_analysis_scripts/11_spectra.ipynb
 
-* **Downloads:** :download:`7 (.ipynb) <scripts/3_analysis_scripts/7_cellphase_model.ipynb>` | 
-  :download:`9A (.ipynb) <scripts/3_analysis_scripts/9A_cnv_score.ipynb>` |
-  :download:`9B (.ipynb) <scripts/3_analysis_scripts/9B_velocity_loom.ipynb>` |
-  :download:`11 (.ipynb) <scripts/3_analysis_scripts/11_spectra.ipynb>` 
-
 .. _clinical-de-scripts:
 
 Clinical & Promoter Prevalence
@@ -81,5 +71,3 @@ Clinical & Promoter Prevalence
    :maxdepth: 1
 
    scripts/3_analysis_scripts/10_survival_curve_isoform
-
-* **HTML Report:** :download:`10 (.html) <scripts/3_analysis_scripts/10_survival_curve_isoform.html>`
