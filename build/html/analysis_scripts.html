@@ -24,7 +24,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Guide Calling for Dual Guides" href="scripts/3_analysis_scripts/2A_cellranger_guidecalling.html" />
-    <link rel="prev" title="Guide Design" href="guide_design.html" /> 
+    <link rel="prev" title="Promoter Specific Guide Design" href="guide_design.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,24 +49,32 @@
               <p class="caption" role="heading"><span class="caption-text">Analysis Pipeline:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="promoter_identification.html">Promoter Identification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="guide_design.html">Guide Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="guide_design.html">Promoter Specific Guide Design</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Analysis Scripts &amp; Pipelines</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#preprocessing-guide-calling">Preprocessing &amp; Guide Calling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#transcript-quantification">Transcript Quantification</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#transcriptional-divergence-e-stats">Transcriptional Divergence (E-Stats)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#cell-phase-pathway-modeling">Cell Phase &amp; Pathway Modeling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#clinical-differential-expression">Clinical &amp; Differential Expression</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#preprocessing-guide-calling">Preprocessing &amp; Guide Calling</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/2A_cellranger_guidecalling.html">Guide Calling for Dual Guides</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/2B_guide_calling_cellrangerfilter4_idealguides.html">Filtering for Cells with Ideal Combination of Guides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/12_negativecontrol.html">Understanding Variation in Negative Control Population</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#transcript-quantification">Transcript Quantification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/9B_velocity_loom.html">Velocity and pyGSEA calculations of ESR1</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#transcriptional-divergence-e-stats-differential-expression">Transcriptional Divergence (E-Stats &amp; Differential Expression)</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/4_estatistic_gene_guide.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/5_genekd_neighbouring_gene_expression.html">Target gene and neighbouring gene expression</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/6_perturbseq_tsne_kldivergence_umap.html">Quantitative individual UMAPs per gene of interest</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/7_cellphase_model.html">Cell Assignment Model from FUCCI-Matched Single-Cell Paper</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/8_perturbseq_differentialexpression.html">Differential Expression analysis between P1 &amp; P2</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#cell-phase-pathway-modeling">Cell Phase &amp; Pathway Modeling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/7_cellphase_model.html">Cell Assignment Model from FUCCI-Matched Single-Cell Paper</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/11_spectra.html">Investigating Gene Pathway Enrichment with Spectra</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/9A_cnv_score.html">Investigating Copy Number Variation Across KD Populations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/9B_velocity_loom.html">Velocity and pyGSEA calculations of ESR1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/11_spectra.html">Spectra Analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scripts/3_analysis_scripts/12_negativecontrol.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#clinical-promoter-prevalence">Clinical &amp; Promoter Prevalence</a><ul class="simple">
 </ul>
 </li>
 </ul>
@@ -100,83 +108,74 @@
   <section id="analysis-scripts-pipelines">
 <span id="analysis-scripts"></span><h1>Analysis Scripts &amp; Pipelines<a class="headerlink" href="#analysis-scripts-pipelines" title="Link to this heading"></a></h1>
 <p>This section contains the core computational notebooks and scripts used for data processing,
-statistical analysis, and visualization. Earlier preprocessing and analysis steps link
-directly to the implementations listed below.</p>
+statistical analysis, and visualization.</p>
 <section id="preprocessing-guide-calling">
 <span id="preprocessing-scripts"></span><h2>Preprocessing &amp; Guide Calling<a class="headerlink" href="#preprocessing-guide-calling" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scripts/3_analysis_scripts/2A_cellranger_guidecalling.html">Guide Calling for Dual Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts/3_analysis_scripts/2B_guide_calling_cellrangerfilter4_idealguides.html">Filtering for Cells with Ideal Combination of Guides</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts/3_analysis_scripts/12_negativecontrol.html">Understanding Variation in Negative Control Population</a></li>
+</ul>
+</div>
 <ul class="simple">
-<li><p><strong>Cellranger Pipeline:</strong> <a class="reference download internal" download="" href="_downloads/221a5b43ef21c2e941c05a2b1444d8f0/1_cellranger.sh"><code class="xref download docutils literal notranslate"><span class="pre">1_cellranger.sh</span></code></a></p></li>
-<li><p><strong>Guide Calling (Primary):</strong>
-<a class="reference internal" href="scripts/3_analysis_scripts/2A_cellranger_guidecalling.html"><span class="doc">Visualise Notebook</span></a>
-| <a class="reference download internal" download="" href="_downloads/748aba877c625f4519553fbf69ce9764/2A_cellranger_guidecalling.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
-<li><p><strong>Guide Calling (Ideal Guides):</strong>
-<a class="reference internal" href="scripts/3_analysis_scripts/2B_guide_calling_cellrangerfilter4_idealguides.html"><span class="doc">Visualise Notebook</span></a>
-| <a class="reference download internal" download="" href="_downloads/65ed54c2ab56bb81d8b939db14dacfc2/2B_guide_calling_cellrangerfilter4_idealguides.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
-<li><p><strong>Negative Control Analysis:</strong>
-<a class="reference internal" href="scripts/3_analysis_scripts/12_negativecontrol.html"><span class="doc">Visualise Notebook</span></a>
-| <a class="reference download internal" download="" href="_downloads/0c00b4d19dbcbb5afd39076e3601c608/12_negativecontrol.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
+<li><p><strong>Shell Pipeline:</strong> <a class="reference download internal" download="" href="_downloads/221a5b43ef21c2e941c05a2b1444d8f0/1_cellranger.sh"><code class="xref download docutils literal notranslate"><span class="pre">1_cellranger.sh</span></code></a></p></li>
+<li><p><strong>Downloads:</strong> <a class="reference download internal" download="" href="_downloads/748aba877c625f4519553fbf69ce9764/2A_cellranger_guidecalling.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">2A</span> <span class="pre">(.ipynb)</span></code></a> |
+<a class="reference download internal" download="" href="_downloads/65ed54c2ab56bb81d8b939db14dacfc2/2B_guide_calling_cellrangerfilter4_idealguides.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">2B</span> <span class="pre">(.ipynb)</span></code></a> |
+<a class="reference download internal" download="" href="_downloads/0c00b4d19dbcbb5afd39076e3601c608/12_negativecontrol.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">12</span> <span class="pre">(.ipynb)</span></code></a></p></li>
 </ul>
 </section>
 <section id="transcript-quantification">
 <span id="splicing-velocity-scripts"></span><h2>Transcript Quantification<a class="headerlink" href="#transcript-quantification" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scripts/3_analysis_scripts/9B_velocity_loom.html">Velocity and pyGSEA calculations of ESR1</a></li>
+</ul>
+</div>
 <ul class="simple">
-<li><p><strong>BAM File Separation:</strong>
-<a class="reference download internal" download="" href="_downloads/bf50bb772b7ccc9d396ca80650db0e2c/3A_seperate_bam_file_ideal.sh"><code class="xref download docutils literal notranslate"><span class="pre">3A_seperate_bam_file_ideal.sh</span></code></a></p></li>
-<li><p><strong>Whippet Pseudobulk Pipeline:</strong>
+<li><p><strong>Shell Scripts:</strong> <a class="reference download internal" download="" href="_downloads/bf50bb772b7ccc9d396ca80650db0e2c/3A_seperate_bam_file_ideal.sh"><code class="xref download docutils literal notranslate"><span class="pre">3A_seperate_bam_file_ideal.sh</span></code></a> |
 <a class="reference download internal" download="" href="_downloads/8ebb729796e1c9cd2b107c53b99a4bd6/3B_whippet_pseudobulk.sh"><code class="xref download docutils literal notranslate"><span class="pre">3B_whippet_pseudobulk.sh</span></code></a></p></li>
-<li><dl class="simple">
-<dt><strong>Whippet Visualisation:</strong></dt><dd><dl class="simple">
-<dt><span class="xref std std-doc">Visualise Notebook</span></dt><dd><p><a class="reference download internal" download="" href="_downloads/2fccbad6447fa7e458c67289ddbf88b5/3C_whippet_pseudobulk.html"><code class="xref download docutils literal notranslate"><span class="pre">3C_whippet_pseudobulk.html</span></code></a></p>
-</dd>
-</dl>
-</dd>
-</dl>
-</li>
-<li><p><strong>RNA Velocity (Loom Generation):</strong>
-<a class="reference internal" href="scripts/3_analysis_scripts/9B_velocity_loom.html"><span class="doc">Visualise Notebook</span></a>
-| <a class="reference download internal" download="" href="_downloads/d1e33bc424950ce4f08748f353f4b331/9B_velocity_loom.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
+<li><p><strong>Downloads:</strong> <a class="reference download internal" download="" href="_downloads/d1e33bc424950ce4f08748f353f4b331/9B_velocity_loom.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">9B</span> <span class="pre">(.ipynb)</span></code></a></p></li>
 </ul>
 </section>
-<section id="transcriptional-divergence-e-stats">
-<span id="estat-scripts"></span><h2>Transcriptional Divergence (E-Stats)<a class="headerlink" href="#transcriptional-divergence-e-stats" title="Link to this heading"></a></h2>
+<section id="transcriptional-divergence-e-stats-differential-expression">
+<span id="estat-scripts"></span><h2>Transcriptional Divergence (E-Stats &amp; Differential Expression)<a class="headerlink" href="#transcriptional-divergence-e-stats-differential-expression" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scripts/3_analysis_scripts/4_estatistic_gene_guide.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts/3_analysis_scripts/5_genekd_neighbouring_gene_expression.html">Target gene and neighbouring gene expression</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts/3_analysis_scripts/6_perturbseq_tsne_kldivergence_umap.html">Quantitative individual UMAPs per gene of interest</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts/3_analysis_scripts/8_perturbseq_differentialexpression.html">Differential Expression analysis between P1 &amp; P2</a></li>
+</ul>
+</div>
 <ul class="simple">
-<li><p><strong>E-Statistic Calculation:</strong>
-<a class="reference internal" href="scripts/3_analysis_scripts/4_estatistic_gene_guide.html"><span class="doc">Visualise Notebook</span></a>
-| <a class="reference download internal" download="" href="_downloads/fe369773a6066f8f416b2fc94bc6a7dc/4_estatistic_gene_guide.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
-<li><p><strong>Neighbouring Gene Expression:</strong>
-<a class="reference internal" href="scripts/3_analysis_scripts/5_genekd_neighbouring_gene_expression.html"><span class="doc">Visualise Notebook</span></a>
-| <a class="reference download internal" download="" href="_downloads/3a34631f69a43d4d8763566e09e738e1/5_genekd_neighbouring_gene_expression.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
-<li><p><strong>UMAP &amp; KL-Divergence:</strong>
-<a class="reference internal" href="scripts/3_analysis_scripts/6_perturbseq_tsne_kldivergence_umap.html"><span class="doc">Visualise Notebook</span></a>
-| <a class="reference download internal" download="" href="_downloads/63c10e71b6881351268cb2d6af698940/6_perturbseq_tsne_kldivergence_umap.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
+<li><p><strong>Downloads:</strong> <a class="reference download internal" download="" href="_downloads/fe369773a6066f8f416b2fc94bc6a7dc/4_estatistic_gene_guide.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">4</span> <span class="pre">(.ipynb)</span></code></a> |
+<a class="reference download internal" download="" href="_downloads/3a34631f69a43d4d8763566e09e738e1/5_genekd_neighbouring_gene_expression.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">5</span> <span class="pre">(.ipynb)</span></code></a> |
+<code class="xref download docutils literal notranslate"><span class="pre">6</span> <span class="pre">(.ipynb)</span></code></p></li>
 </ul>
 </section>
 <section id="cell-phase-pathway-modeling">
 <span id="cellphase-pathway-scripts"></span><h2>Cell Phase &amp; Pathway Modeling<a class="headerlink" href="#cell-phase-pathway-modeling" title="Link to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scripts/3_analysis_scripts/7_cellphase_model.html">Cell Assignment Model from FUCCI-Matched Single-Cell Paper</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts/3_analysis_scripts/11_spectra.html">Investigating Gene Pathway Enrichment with Spectra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts/3_analysis_scripts/9A_cnv_score.html">Investigating Copy Number Variation Across KD Populations</a></li>
+</ul>
+</div>
 <ul class="simple">
-<li><p><strong>Cell Phase Model:</strong>
-<a class="reference internal" href="scripts/3_analysis_scripts/7_cellphase_model.html"><span class="doc">Visualise Notebook</span></a>
-| <a class="reference download internal" download="" href="_downloads/59c7181671523045641d81eb3e5bc077/7_cellphase_model.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
-<li><p><strong>Spectra Pathway Analysis:</strong>
-<a class="reference internal" href="scripts/3_analysis_scripts/11_spectra.html"><span class="doc">Visualise Notebook</span></a>
-| <a class="reference download internal" download="" href="_downloads/91f4ce777a3bcac92e59e2629c46dc29/11_spectra.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
-<li><p><strong>CNV Score Analysis:</strong>
-<a class="reference internal" href="scripts/3_analysis_scripts/9A_cnv_score.html"><span class="doc">Visualise Notebook</span></a>
-| <a class="reference download internal" download="" href="_downloads/3f18a06bbd591bbf4c726047746cb82a/9A_cnv_score.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
+<li><p><strong>Downloads:</strong> <a class="reference download internal" download="" href="_downloads/59c7181671523045641d81eb3e5bc077/7_cellphase_model.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">7</span> <span class="pre">(.ipynb)</span></code></a> |
+<a class="reference download internal" download="" href="_downloads/91f4ce777a3bcac92e59e2629c46dc29/11_spectra.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">11</span> <span class="pre">(.ipynb)</span></code></a> |
+<a class="reference download internal" download="" href="_downloads/3f18a06bbd591bbf4c726047746cb82a/9A_cnv_score.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">9A</span> <span class="pre">(.ipynb)</span></code></a></p></li>
 </ul>
 </section>
-<section id="clinical-differential-expression">
-<span id="clinical-de-scripts"></span><h2>Clinical &amp; Differential Expression<a class="headerlink" href="#clinical-differential-expression" title="Link to this heading"></a></h2>
-<ul class="simple">
-<li><p><strong>Differential Expression:</strong>
-<a class="reference internal" href="scripts/3_analysis_scripts/8_perturbseq_differentialexpression.html"><span class="doc">Visualise Notebook</span></a>
-| <a class="reference download internal" download="" href="_downloads/1b4ce115d15c5a8f88566cbe9e78d300/8_perturbseq_differentialexpression.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.ipynb</span></code></a></p></li>
-<li><p><strong>Survival Curve Analysis:</strong>
-<span class="xref std std-doc">View html</span>
-| <a class="reference download internal" download="" href="_downloads/bb9d6daccc34c1a200604ebc3a4bfe0c/10_survival_curve.html"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">.html</span></code></a></p></li>
-</ul>
+<section id="clinical-promoter-prevalence">
+<span id="clinical-de-scripts"></span><h2>Clinical &amp; Promoter Prevalence<a class="headerlink" href="#clinical-promoter-prevalence" title="Link to this heading"></a></h2>
 <div class="toctree-wrapper compound">
 </div>
+<ul class="simple">
+<li><p><strong>Downloads:</strong> <a class="reference download internal" download="" href="_downloads/b0e2819f4943c1fe0517f4b53bc88c66/10_survival_curve_isoform.html"><code class="xref download docutils literal notranslate"><span class="pre">10</span> <span class="pre">(.html)</span></code></a></p></li>
+</ul>
 </section>
 </section>
 
@@ -184,7 +183,7 @@ directly to the implementations listed below.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="guide_design.html" class="btn btn-neutral float-left" title="Guide Design" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="guide_design.html" class="btn btn-neutral float-left" title="Promoter Specific Guide Design" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="scripts/3_analysis_scripts/2A_cellranger_guidecalling.html" class="btn btn-neutral float-right" title="Guide Calling for Dual Guides" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

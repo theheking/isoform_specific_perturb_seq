@@ -12,7 +12,7 @@ Reports & Notebooks
 -------------------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    scripts/1_promoter_identification/1A_integration_pacbiotss_proactiv_published_only.html
    scripts/1_promoter_identification/1B_identify_targetregion_dualguides.html

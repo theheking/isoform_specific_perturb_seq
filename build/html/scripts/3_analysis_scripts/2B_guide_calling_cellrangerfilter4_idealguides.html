@@ -26,7 +26,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Guide Calling Using the Cellranger Module HDF5 File" href="4_estatistic_gene_guide.html" />
+    <link rel="next" title="Understanding Variation in Negative Control Population" href="12_negativecontrol.html" />
     <link rel="prev" title="Guide Calling for Dual Guides" href="2A_cellranger_guidecalling.html" /> 
 </head>
 
@@ -52,30 +52,18 @@
               <p class="caption" role="heading"><span class="caption-text">Analysis Pipeline:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../promoter_identification.html">Promoter Identification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../guide_design.html">Guide Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guide_design.html">Promoter Specific Guide Design</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../analysis_scripts.html">Analysis Scripts &amp; Pipelines</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#preprocessing-guide-calling">Preprocessing &amp; Guide Calling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#splicing-rna-velocity">Splicing &amp; RNA Velocity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#transcriptional-divergence-e-stats">Transcriptional Divergence (E-Stats)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#cell-phase-pathway-modeling">Cell Phase &amp; Pathway Modeling</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../analysis_scripts.html#clinical-differential-expression">Clinical &amp; Differential Expression</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../analysis_scripts.html#preprocessing-guide-calling">Preprocessing &amp; Guide Calling</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="2A_cellranger_guidecalling.html">Guide Calling for Dual Guides</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Filtering for Cells with Ideal Combination of Guides</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#cell_barcode,guide_identity,read_count,UMI_count,coverage,gemgroup,good_coverage,number_of_cells">cell_barcode,guide_identity,read_count,UMI_count,coverage,gemgroup,good_coverage,number_of_cells</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#AAACCCAAGACTCTTG-1,non-targeting_00362,1,1,1.0,1,True,1.0">AAACCCAAGACTCTTG-1,non-targeting_00362,1,1,1.0,1,True,1.0</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Filtering for Cells with Ideal Combination of Guides</a></li>
+<li class="toctree-l3"><a class="reference internal" href="12_negativecontrol.html">Understanding Variation in Negative Control Population</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="4_estatistic_gene_guide.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="5_genekd_neighbouring_gene_expression.html">Target gene and neighbouring gene expression</a></li>
-<li class="toctree-l3"><a class="reference internal" href="6_perturbseq_tsne_kldivergence_umap.html">Quantitative individual UMAPs per gene of interest</a></li>
-<li class="toctree-l3"><a class="reference internal" href="7_cellphase_model.html">Cell Assignment Model from FUCCI-Matched Single-Cell Paper</a></li>
-<li class="toctree-l3"><a class="reference internal" href="8_perturbseq_differentialexpression.html">Differential Expression analysis between P1 &amp; P2</a></li>
-<li class="toctree-l3"><a class="reference internal" href="9A_cnv_score.html">Investigating Copy Number Variation Across KD Populations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="9B_velocity_loom.html">Velocity and pyGSEA calculations of ESR1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="11_spectra.html">Spectra Analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="12_negativecontrol.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#transcript-quantification">Transcript Quantification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#transcriptional-divergence-e-stats-differential-expression">Transcriptional Divergence (E-Stats &amp; Differential Expression)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#cell-phase-pathway-modeling">Cell Phase &amp; Pathway Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#clinical-promoter-prevalence">Clinical &amp; Promoter Prevalence</a></li>
 </ul>
 </li>
 </ul>
@@ -130,11 +118,11 @@
 <li><p>ESR1-specific analysis from proliferation analysis to rt-qpcr</p></li>
 <li><p>Spectra analysis and visualisation for pathway enrichment</p></li>
 </ol>
-<section id="cell_barcode,guide_identity,read_count,UMI_count,coverage,gemgroup,good_coverage,number_of_cells">
-<h2>cell_barcode,guide_identity,read_count,UMI_count,coverage,gemgroup,good_coverage,number_of_cells<a class="headerlink" href="#cell_barcode,guide_identity,read_count,UMI_count,coverage,gemgroup,good_coverage,number_of_cells" title="Link to this heading"></a></h2>
-</section>
-<section id="AAACCCAAGACTCTTG-1,non-targeting_00362,1,1,1.0,1,True,1.0">
-<h2>AAACCCAAGACTCTTG-1,non-targeting_00362,1,1,1.0,1,True,1.0<a class="headerlink" href="#AAACCCAAGACTCTTG-1,non-targeting_00362,1,1,1.0,1,True,1.0" title="Link to this heading"></a></h2>
+<p>In CRISPR screening, it isn’t enough to just see a guide; you need to know if the signal is strong enough to be confident.</p>
+<ul class="simple">
+<li><p>Read vs. UMI: The code calculates Coverage by dividing the read_count by the UMI_count.</p></li>
+<li><p>The Logic: High coverage suggests that the UMI was sequenced multiple times, providing high confidence that the guide was actually present in that droplet and isn’t just background noise or sequencing error.</p></li>
+</ul>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[19]:
 </pre></div>
@@ -275,9 +263,15 @@ No artists with labels found to put in legend.  Note that artists whose label st
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_2B_guide_calling_cellrangerfilter4_idealguides_2_2.png" src="../../_images/scripts_3_analysis_scripts_2B_guide_calling_cellrangerfilter4_idealguides_2_2.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_2B_guide_calling_cellrangerfilter4_idealguides_3_2.png" src="../../_images/scripts_3_analysis_scripts_2B_guide_calling_cellrangerfilter4_idealguides_3_2.png" />
 </div>
 </div>
+<p>This is the most critical logic for this specific paper. The experiment uses a dual-guide strategy (targeting the same promoter with two different guides to ensure knockdown).</p>
+<p>Filtering Criteria: To be considered an “Ideal Cell,” a barcode must meet four strict criteria:</p>
+<p>Correct Number: It must have exactly 2 unique guides.</p>
+<p>Same Gene: Both guides must target the same gene.</p>
+<p>Same Promoter Type: Both must target either the Major Promoter (MP) or the Alternative Promoter (AP).</p>
+<p>Correct Partner (A/B or C/D): The library design uses specific pairs (e.g., guide A and guide B always go together). The code checks if the detected guides are the intended biological partners.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[34]:
 </pre></div>
@@ -321,9 +315,11 @@ Number of unique cell barcodes:
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_2B_guide_calling_cellrangerfilter4_idealguides_3_1.png" src="../../_images/scripts_3_analysis_scripts_2B_guide_calling_cellrangerfilter4_idealguides_3_1.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_2B_guide_calling_cellrangerfilter4_idealguides_5_1.png" src="../../_images/scripts_3_analysis_scripts_2B_guide_calling_cellrangerfilter4_idealguides_5_1.png" />
 </div>
 </div>
+<p>What you see: It visualizes how many cells were discarded because they had the wrong number of guides, or guides targeting different genes.</p>
+<p>The Result: Only the “Success” slice of the population (cells meeting all 4 criteria above) is saved into cell_identities_ideal.csv. This ensures the downstream differential expression analysis isn’t “muddied” by cells with ambiguous perturbations.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[22]:
 </pre></div>
@@ -347,6 +343,9 @@ Number of unique cell barcodes:
 <br/></pre></div>
 </div>
 </div>
+<p>The final section generates KDE (Kernel Density Estimate) and line plots comparing Ideal vs. Non-Ideal cells.</p>
+<p>Log UMI Count: The code looks at the distribution of UMIs for the guides.</p>
+<p>The Goal: You should see that “Ideal” cells (those with the correct dual guides) generally have higher UMI counts. If a cell has very few UMIs for a guide, the knockdown might not have been effective, so these plots serve as a final “sanity check” on the library’s performance before looking at the transcriptome.</p>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[23]:
 </pre></div>
@@ -387,10 +386,9 @@ Number of unique cell barcodes:
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_2B_guide_calling_cellrangerfilter4_idealguides_5_0.png" src="../../_images/scripts_3_analysis_scripts_2B_guide_calling_cellrangerfilter4_idealguides_5_0.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_2B_guide_calling_cellrangerfilter4_idealguides_9_0.png" src="../../_images/scripts_3_analysis_scripts_2B_guide_calling_cellrangerfilter4_idealguides_9_0.png" />
 </div>
 </div>
-</section>
 </section>
 
 
@@ -398,7 +396,7 @@ Number of unique cell barcodes:
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="2A_cellranger_guidecalling.html" class="btn btn-neutral float-left" title="Guide Calling for Dual Guides" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="4_estatistic_gene_guide.html" class="btn btn-neutral float-right" title="Guide Calling Using the Cellranger Module HDF5 File" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="12_negativecontrol.html" class="btn btn-neutral float-right" title="Understanding Variation in Negative Control Population" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

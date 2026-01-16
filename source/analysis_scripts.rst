@@ -81,6 +81,6 @@ Clinical & Promoter Prevalence
 .. toctree::
    :maxdepth: 1
 
-   scripts/3_analysis_scripts/10_survival_curve.html
+   scripts/3_analysis_scripts/10_survival_curve_isoform.html
 
-* **Downloads:** :download:`10 (.html) <scripts/3_analysis_scripts/10_survival_curve.html>`
+* **Downloads:** :download:`10 (.html) <scripts/3_analysis_scripts/10_survival_curve_isoform.html>`

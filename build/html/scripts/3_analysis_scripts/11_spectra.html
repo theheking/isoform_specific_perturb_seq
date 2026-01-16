@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Spectra Analysis &mdash; Isoform Specific Perturb-Seq  documentation</title>
+  <title>Investigating Gene Pathway Enrichment with Spectra &mdash; Isoform Specific Perturb-Seq  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -26,8 +26,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Guide Calling Using the Cellranger Module HDF5 File" href="12_negativecontrol.html" />
-    <link rel="prev" title="Velocity and pyGSEA calculations of ESR1" href="9B_velocity_loom.html" /> 
+    <link rel="next" title="Investigating Copy Number Variation Across KD Populations" href="9A_cnv_score.html" />
+    <link rel="prev" title="Cell Assignment Model from FUCCI-Matched Single-Cell Paper" href="7_cellphase_model.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -52,26 +52,18 @@
               <p class="caption" role="heading"><span class="caption-text">Analysis Pipeline:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../promoter_identification.html">Promoter Identification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../guide_design.html">Guide Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guide_design.html">Promoter Specific Guide Design</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../analysis_scripts.html">Analysis Scripts &amp; Pipelines</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#preprocessing-guide-calling">Preprocessing &amp; Guide Calling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#splicing-rna-velocity">Splicing &amp; RNA Velocity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#transcriptional-divergence-e-stats">Transcriptional Divergence (E-Stats)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#cell-phase-pathway-modeling">Cell Phase &amp; Pathway Modeling</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../analysis_scripts.html#clinical-differential-expression">Clinical &amp; Differential Expression</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="2A_cellranger_guidecalling.html">Guide Calling for Dual Guides</a></li>
-<li class="toctree-l3"><a class="reference internal" href="2B_guide_calling_cellrangerfilter4_idealguides.html">Filtering for Cells with Ideal Combination of Guides</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4_estatistic_gene_guide.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="5_genekd_neighbouring_gene_expression.html">Target gene and neighbouring gene expression</a></li>
-<li class="toctree-l3"><a class="reference internal" href="6_perturbseq_tsne_kldivergence_umap.html">Quantitative individual UMAPs per gene of interest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#transcript-quantification">Transcript Quantification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#transcriptional-divergence-e-stats-differential-expression">Transcriptional Divergence (E-Stats &amp; Differential Expression)</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../analysis_scripts.html#cell-phase-pathway-modeling">Cell Phase &amp; Pathway Modeling</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="7_cellphase_model.html">Cell Assignment Model from FUCCI-Matched Single-Cell Paper</a></li>
-<li class="toctree-l3"><a class="reference internal" href="8_perturbseq_differentialexpression.html">Differential Expression analysis between P1 &amp; P2</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Investigating Gene Pathway Enrichment with Spectra</a></li>
 <li class="toctree-l3"><a class="reference internal" href="9A_cnv_score.html">Investigating Copy Number Variation Across KD Populations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="9B_velocity_loom.html">Velocity and pyGSEA calculations of ESR1</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Spectra Analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="12_negativecontrol.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#clinical-promoter-prevalence">Clinical &amp; Promoter Prevalence</a></li>
 </ul>
 </li>
 </ul>
@@ -91,7 +83,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../analysis_scripts.html">Analysis Scripts &amp; Pipelines</a></li>
-      <li class="breadcrumb-item active">Spectra Analysis</li>
+      <li class="breadcrumb-item active">Investigating Gene Pathway Enrichment with Spectra</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/scripts/3_analysis_scripts/11_spectra.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -101,8 +93,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="Spectra-Analysis">
-<h1>Spectra Analysis<a class="headerlink" href="#Spectra-Analysis" title="Link to this heading"></a></h1>
+  <section id="Investigating-Gene-Pathway-Enrichment-with-Spectra">
+<h1>Investigating Gene Pathway Enrichment with Spectra<a class="headerlink" href="#Investigating-Gene-Pathway-Enrichment-with-Spectra" title="Link to this heading"></a></h1>
 <p>This notebook uses Spectra to translate raw gene expression into interpretable biological scores. It then uses those scores to test the hypothesis that specific ESR1 perturbations alter cell cycle transitions. The results suggest a detailed look at how different promoters or guides for the same target gene might result in different phenotypic (biological program) outcomes.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
@@ -1245,8 +1237,8 @@ plotting factor: 80-X-global-X-all_G1S-transition
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="9B_velocity_loom.html" class="btn btn-neutral float-left" title="Velocity and pyGSEA calculations of ESR1" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="12_negativecontrol.html" class="btn btn-neutral float-right" title="Guide Calling Using the Cellranger Module HDF5 File" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="7_cellphase_model.html" class="btn btn-neutral float-left" title="Cell Assignment Model from FUCCI-Matched Single-Cell Paper" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="9A_cnv_score.html" class="btn btn-neutral float-right" title="Investigating Copy Number Variation Across KD Populations" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

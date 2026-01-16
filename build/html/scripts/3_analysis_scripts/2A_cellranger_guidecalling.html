@@ -52,30 +52,18 @@
               <p class="caption" role="heading"><span class="caption-text">Analysis Pipeline:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../promoter_identification.html">Promoter Identification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../guide_design.html">Guide Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guide_design.html">Promoter Specific Guide Design</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../analysis_scripts.html">Analysis Scripts &amp; Pipelines</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#preprocessing-guide-calling">Preprocessing &amp; Guide Calling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#splicing-rna-velocity">Splicing &amp; RNA Velocity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#transcriptional-divergence-e-stats">Transcriptional Divergence (E-Stats)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#cell-phase-pathway-modeling">Cell Phase &amp; Pathway Modeling</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../analysis_scripts.html#clinical-differential-expression">Clinical &amp; Differential Expression</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Guide Calling for Dual Guides</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#cell_barcode,guide_identity,read_count,UMI_count,coverage,gemgroup,good_coverage,number_of_cells">cell_barcode,guide_identity,read_count,UMI_count,coverage,gemgroup,good_coverage,number_of_cells</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#AAACCCAAGACTCTTG-1,non-targeting_00362,1,1,1.0,1,True,1.0">AAACCCAAGACTCTTG-1,non-targeting_00362,1,1,1.0,1,True,1.0</a></li>
-</ul>
-</li>
+<li class="toctree-l2 current"><a class="reference internal" href="../../analysis_scripts.html#preprocessing-guide-calling">Preprocessing &amp; Guide Calling</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Guide Calling for Dual Guides</a></li>
 <li class="toctree-l3"><a class="reference internal" href="2B_guide_calling_cellrangerfilter4_idealguides.html">Filtering for Cells with Ideal Combination of Guides</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4_estatistic_gene_guide.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="5_genekd_neighbouring_gene_expression.html">Target gene and neighbouring gene expression</a></li>
-<li class="toctree-l3"><a class="reference internal" href="6_perturbseq_tsne_kldivergence_umap.html">Quantitative individual UMAPs per gene of interest</a></li>
-<li class="toctree-l3"><a class="reference internal" href="7_cellphase_model.html">Cell Assignment Model from FUCCI-Matched Single-Cell Paper</a></li>
-<li class="toctree-l3"><a class="reference internal" href="8_perturbseq_differentialexpression.html">Differential Expression analysis between P1 &amp; P2</a></li>
-<li class="toctree-l3"><a class="reference internal" href="9A_cnv_score.html">Investigating Copy Number Variation Across KD Populations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="9B_velocity_loom.html">Velocity and pyGSEA calculations of ESR1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="11_spectra.html">Spectra Analysis</a></li>
-<li class="toctree-l3"><a class="reference internal" href="12_negativecontrol.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
+<li class="toctree-l3"><a class="reference internal" href="12_negativecontrol.html">Understanding Variation in Negative Control Population</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#transcript-quantification">Transcript Quantification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#transcriptional-divergence-e-stats-differential-expression">Transcriptional Divergence (E-Stats &amp; Differential Expression)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#cell-phase-pathway-modeling">Cell Phase &amp; Pathway Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#clinical-promoter-prevalence">Clinical &amp; Promoter Prevalence</a></li>
 </ul>
 </li>
 </ul>
@@ -130,11 +118,9 @@
 <li><p>ESR1-specific analysis from proliferation analysis to rt-qpcr</p></li>
 <li><p>Spectra analysis and visualisation for pathway enrichment</p></li>
 </ol>
-<section id="cell_barcode,guide_identity,read_count,UMI_count,coverage,gemgroup,good_coverage,number_of_cells">
-<h2>cell_barcode,guide_identity,read_count,UMI_count,coverage,gemgroup,good_coverage,number_of_cells<a class="headerlink" href="#cell_barcode,guide_identity,read_count,UMI_count,coverage,gemgroup,good_coverage,number_of_cells" title="Link to this heading"></a></h2>
-</section>
-<section id="AAACCCAAGACTCTTG-1,non-targeting_00362,1,1,1.0,1,True,1.0">
-<h2>AAACCCAAGACTCTTG-1,non-targeting_00362,1,1,1.0,1,True,1.0<a class="headerlink" href="#AAACCCAAGACTCTTG-1,non-targeting_00362,1,1,1.0,1,True,1.0" title="Link to this heading"></a></h2>
+<p>This specific stage handles “Guide Calling” and filtering—essentially identifying which CRISPR guides are in which individual cell and ensuring only the “ideal” cells (those with the correct combination of guides) are used for downstream analysis. The process begins by reading the output from Cell Ranger, which is the standard tool for processing 10x Genomics data.</p>
+<p>What is happening: The code loads protospacer_calls_per_cell.csv. This file contains raw data on which “features” (guides) were detected in each cell barcode and how many UMIs (Unique Molecular Identifiers) were associated with each.</p>
+<p>Normalization: Since one cell barcode can have multiple guides, the code “stacks” and “resets” the index to create a clean list where every row is a unique cell_barcode + guide_identity pair.</p>
 <div class="nbinput nblast docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
 </pre></div>
@@ -385,7 +371,6 @@
 <br/></pre></div>
 </div>
 </div>
-</section>
 </section>
 
 

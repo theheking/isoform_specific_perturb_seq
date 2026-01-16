@@ -12,7 +12,7 @@ FlashFry Analysis
 -----------------
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    scripts/2_guide_design/2_FlashFry_dualguide.html
 

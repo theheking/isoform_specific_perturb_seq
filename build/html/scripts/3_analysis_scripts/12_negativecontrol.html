@@ -6,7 +6,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Guide Calling Using the Cellranger Module HDF5 File &mdash; Isoform Specific Perturb-Seq  documentation</title>
+  <title>Understanding Variation in Negative Control Population &mdash; Isoform Specific Perturb-Seq  documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
       <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
@@ -26,7 +26,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="prev" title="Spectra Analysis" href="11_spectra.html" /> 
+    <link rel="next" title="Velocity and pyGSEA calculations of ESR1" href="9B_velocity_loom.html" />
+    <link rel="prev" title="Filtering for Cells with Ideal Combination of Guides" href="2B_guide_calling_cellrangerfilter4_idealguides.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -51,29 +52,18 @@
               <p class="caption" role="heading"><span class="caption-text">Analysis Pipeline:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../promoter_identification.html">Promoter Identification</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../../guide_design.html">Guide Design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../guide_design.html">Promoter Specific Guide Design</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="../../analysis_scripts.html">Analysis Scripts &amp; Pipelines</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#preprocessing-guide-calling">Preprocessing &amp; Guide Calling</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#splicing-rna-velocity">Splicing &amp; RNA Velocity</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#transcriptional-divergence-e-stats">Transcriptional Divergence (E-Stats)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#cell-phase-pathway-modeling">Cell Phase &amp; Pathway Modeling</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="../../analysis_scripts.html#clinical-differential-expression">Clinical &amp; Differential Expression</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../analysis_scripts.html#preprocessing-guide-calling">Preprocessing &amp; Guide Calling</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="2A_cellranger_guidecalling.html">Guide Calling for Dual Guides</a></li>
 <li class="toctree-l3"><a class="reference internal" href="2B_guide_calling_cellrangerfilter4_idealguides.html">Filtering for Cells with Ideal Combination of Guides</a></li>
-<li class="toctree-l3"><a class="reference internal" href="4_estatistic_gene_guide.html">Guide Calling Using the Cellranger Module HDF5 File</a></li>
-<li class="toctree-l3"><a class="reference internal" href="5_genekd_neighbouring_gene_expression.html">Target gene and neighbouring gene expression</a></li>
-<li class="toctree-l3"><a class="reference internal" href="6_perturbseq_tsne_kldivergence_umap.html">Quantitative individual UMAPs per gene of interest</a></li>
-<li class="toctree-l3"><a class="reference internal" href="7_cellphase_model.html">Cell Assignment Model from FUCCI-Matched Single-Cell Paper</a></li>
-<li class="toctree-l3"><a class="reference internal" href="8_perturbseq_differentialexpression.html">Differential Expression analysis between P1 &amp; P2</a></li>
-<li class="toctree-l3"><a class="reference internal" href="9A_cnv_score.html">Investigating Copy Number Variation Across KD Populations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="9B_velocity_loom.html">Velocity and pyGSEA calculations of ESR1</a></li>
-<li class="toctree-l3"><a class="reference internal" href="11_spectra.html">Spectra Analysis</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Guide Calling Using the Cellranger Module HDF5 File</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#Utilising-Direct-Capture-Perturb-Seq-to-Deciphering-Alternative-Promoter-Usage">Utilising Direct Capture Perturb-Seq to Deciphering Alternative Promoter Usage</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Understanding Variation in Negative Control Population</a></li>
 </ul>
 </li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#transcript-quantification">Transcript Quantification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#transcriptional-divergence-e-stats-differential-expression">Transcriptional Divergence (E-Stats &amp; Differential Expression)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#cell-phase-pathway-modeling">Cell Phase &amp; Pathway Modeling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../analysis_scripts.html#clinical-promoter-prevalence">Clinical &amp; Promoter Prevalence</a></li>
 </ul>
 </li>
 </ul>
@@ -93,7 +83,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="../../analysis_scripts.html">Analysis Scripts &amp; Pipelines</a></li>
-      <li class="breadcrumb-item active">Guide Calling Using the Cellranger Module HDF5 File</li>
+      <li class="breadcrumb-item active">Understanding Variation in Negative Control Population</li>
       <li class="wy-breadcrumbs-aside">
             <a href="../../_sources/scripts/3_analysis_scripts/12_negativecontrol.ipynb.txt" rel="nofollow"> View page source</a>
       </li>
@@ -103,10 +93,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="Guide-Calling-Using-the-Cellranger-Module-HDF5-File">
-<h1>Guide Calling Using the Cellranger Module HDF5 File<a class="headerlink" href="#Guide-Calling-Using-the-Cellranger-Module-HDF5-File" title="Link to this heading"></a></h1>
-<section id="Utilising-Direct-Capture-Perturb-Seq-to-Deciphering-Alternative-Promoter-Usage">
-<h2>Utilising Direct Capture Perturb-Seq to Deciphering Alternative Promoter Usage<a class="headerlink" href="#Utilising-Direct-Capture-Perturb-Seq-to-Deciphering-Alternative-Promoter-Usage" title="Link to this heading"></a></h2>
+  <section id="Understanding-Variation-in-Negative-Control-Population">
+<h1>Understanding Variation in Negative Control Population<a class="headerlink" href="#Understanding-Variation-in-Negative-Control-Population" title="Link to this heading"></a></h1>
 <ol class="arabic simple">
 <li><p>Run through the 10x Cellranger pipeline and velocyto for single cell RNAseq quatification and using (2) guides quantifiction. all found in the cellranger files folder <strong>bash</strong></p></li>
 <li><p>Guide Calling for dual guide. Use repogle method to take molecule.h5 generated by cellranger and py to run through repogle version of guide calling or use cellranger_guidecalling.ipynb for Direct Capture Perturb-Seq dual guide. Formed guide-specific lists of cells.</p></li>
@@ -116,10 +104,47 @@
 <li><p>Create individual umaps per gene of interest A. UMAPs B. Rand Index score</p></li>
 <li><p>Cell phase assignment model from FUCCI-matched single cell paper (GSE146773)</p></li>
 <li><p>Differential Expression analysis. A. Find the shared P1 and P2 genes. B. Check the shared P1 and P2 across different protospacers with the same A/B and C/D.</p></li>
-<li><p><strong>CNV Score &amp; Numbat to quantify and Velocity quantification with loom file</strong></p></li>
+<li><p>CNV Score &amp; Numbat to quantify and Velocity quantification with loom file</p></li>
 <li><p>ESR1-specific analysis from proliferation analysis to rt-qpcr</p></li>
 <li><p>Spectra analysis and visualisation for pathway enrichment</p></li>
 </ol>
+<p>This script is dedicated to establishing the empirical null distribution for the study. By analyzing cells treated with non-targeting control (NTC) sgRNAs, the authors can distinguish true biological signals from the inherent noise and stochastic variability of single-cell sequencing.</p>
+<ol class="arabic simple">
+<li><p>Defining Baseline Transcriptional Noise Single-cell RNA-seq is inherently sparse and variable. To ensure that the “divergence” measured in perturbed cells is meaningful, the authors must first know how much variation occurs naturally.</p></li>
+</ol>
+<p>What is happening: The code subsets the 10% of the library assigned to non-targeting control sgRNAs.</p>
+<p>The Logic: These cells represent the “ground state” where no specific promoter is being repressed. Any variation in expression here is considered the baseline noise level.</p>
+<ol class="arabic simple" start="2">
+<li><p>Validating the E-statistic and Rand Scores The notebook uses these control cells to perform “permutation tests” or “shuffled” analyses.</p></li>
+</ol>
+<p>What is happening: The code calculates the e-distance and Rand Scores between different groups of NTC cells.</p>
+<p>Expected Result: Since all these cells are controls, the e-distance should be near zero, and the Rand Score should show no significant clustering.</p>
+<p>Significance: This provides the “p-value” cutoff used in earlier notebooks. If the P1 vs. P2 divergence is significantly higher than this NTC-vs-NTC noise, it is confirmed as a real biological effect</p>
+<p>This notebook, 15_negativecontrol.ipynb, is dedicated to establishing the empirical null distribution for the study. By analyzing cells treated with non-targeting control (NTC) sgRNAs, the authors can distinguish true biological signals from the inherent noise and stochastic variability of single-cell sequencing.</p>
+<p>Here is a breakdown of the computational workflow and its role in the study:</p>
+<ol class="arabic simple">
+<li><p>Defining Baseline Transcriptional Noise</p></li>
+</ol>
+<ul class="simple">
+<li><p>Single-cell RNA-seq is inherently sparse and variable. To ensure that the “divergence” measured in perturbed cells is meaningful, the authors must first know how much variation occurs naturally.</p></li>
+<li><p>What is happening: The code subsets the 10% of the library assigned to non-targeting control sgRNAs.</p></li>
+</ul>
+<p>-The Logic: These cells represent the “ground state” where no specific promoter is being repressed. Any variation in expression here is considered the baseline noise level.</p>
+<ol class="arabic simple" start="2">
+<li><p>Validating the E-statistic and Rand Scores. The notebook uses these control cells to perform “permutation tests” or “shuffled” analyses.</p></li>
+</ol>
+<ul class="simple">
+<li><p>What is happening: The code calculates the e-distance and Rand Scores between different groups of NTC cells.</p></li>
+<li><p>Expected Result: Since all these cells are controls, the e-distance should be near zero, and the Rand Score should show no significant clustering.</p></li>
+<li><p>Significance: This provides the “p-value” cutoff used in earlier notebooks. If the P1 vs. P2 divergence is significantly higher than this NTC-vs-NTC noise, it is confirmed as a real biological effect.</p></li>
+</ul>
+<ol class="arabic simple" start="3">
+<li><p>Promoter Expression in the “Wild-Type” State. The notebook provides the baseline expression data for the P1 and P2 promoters before any CRISPRi intervention.</p></li>
+</ol>
+<ul class="simple">
+<li><p>What you see: Violin plots and dot plots showing the relative expression of P1 and P2 promoters in the control population.</p></li>
+<li><p>Discovery: This data confirmed that for most targeted genes, both promoters are active in the MCF-7 cell line, providing the necessary “room” for a knockdown to be measured.</p></li>
+</ul>
 <div class="nbinput docutils container">
 <div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
 </pre></div>
@@ -416,7 +441,7 @@ OMP: Info #276: omp_set_nested routine deprecated, please use omp_set_max_active
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_12_negativecontrol_9_0.png" src="../../_images/scripts_3_analysis_scripts_12_negativecontrol_9_0.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_12_negativecontrol_10_0.png" src="../../_images/scripts_3_analysis_scripts_12_negativecontrol_10_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -516,7 +541,7 @@ dtype: int64
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_12_negativecontrol_13_0.png" src="../../_images/scripts_3_analysis_scripts_12_negativecontrol_13_0.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_12_negativecontrol_14_0.png" src="../../_images/scripts_3_analysis_scripts_12_negativecontrol_14_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -611,7 +636,7 @@ INFO:matplotlib.category:Using categorical units to plot a list of strings that 
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_12_negativecontrol_15_1.png" src="../../_images/scripts_3_analysis_scripts_12_negativecontrol_15_1.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_12_negativecontrol_16_1.png" src="../../_images/scripts_3_analysis_scripts_12_negativecontrol_16_1.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -657,7 +682,7 @@ Cell <span class="ansi-green-fg">In[15], line 1</span>
 <div class="prompt empty docutils container">
 </div>
 <div class="output_area docutils container">
-<img alt="../../_images/scripts_3_analysis_scripts_12_negativecontrol_17_0.png" src="../../_images/scripts_3_analysis_scripts_12_negativecontrol_17_0.png" />
+<img alt="../../_images/scripts_3_analysis_scripts_12_negativecontrol_18_0.png" src="../../_images/scripts_3_analysis_scripts_12_negativecontrol_18_0.png" />
 </div>
 </div>
 <div class="nbinput docutils container">
@@ -905,13 +930,13 @@ Cell <span class="ansi-green-fg">In[15], line 1</span>
 </div></div>
 </div>
 </section>
-</section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="11_spectra.html" class="btn btn-neutral float-left" title="Spectra Analysis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="2B_guide_calling_cellrangerfilter4_idealguides.html" class="btn btn-neutral float-left" title="Filtering for Cells with Ideal Combination of Guides" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="9B_velocity_loom.html" class="btn btn-neutral float-right" title="Velocity and pyGSEA calculations of ESR1" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
