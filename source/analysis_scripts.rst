@@ -40,7 +40,7 @@ Transcript Quantification
 
 .. _estat-scripts:
 
-Transcriptional Divergence (E-Stats)
+Transcriptional Divergence (E-Stats & Differential Expression)
 ------------------------------------
 
 .. toctree::
@@ -49,10 +49,13 @@ Transcriptional Divergence (E-Stats)
    scripts/3_analysis_scripts/4_estatistic_gene_guide.ipynb
    scripts/3_analysis_scripts/5_genekd_neighbouring_gene_expression.ipynb
    scripts/3_analysis_scripts/6_perturbseq_tsne_kldivergence_umap.ipynb
+   scripts/3_analysis_scripts/8_perturbseq_differentialexpression.ipynb
+
 
 * **Downloads:** :download:`4 (.ipynb) <scripts/3_analysis_scripts/4_estatistic_gene_guide.ipynb>` | 
   :download:`5 (.ipynb) <scripts/3_analysis_scripts/5_genekd_neighbouring_gene_expression.ipynb>` | 
-  :download:`6 (.ipynb) <scripts/3_analysis_scripts/6_perturbseq_tsne_kldivergence_umap.ipynb>`
+  :download:`6 (.ipynb) <scripts/3_analysis_scripts/6_perturbseq_tsne_kldivergence_umap.ipynb>`|
+   :download:`8 (.ipynb) <scripts/3_analysis_scripts/8_perturbseq_differentialexpression.ipynb>`
 
 .. _cellphase-pathway-scripts:
 
@@ -72,14 +75,13 @@ Cell Phase & Pathway Modeling
 
 .. _clinical-de-scripts:
 
-Clinical & Differential Expression
+Clinical & Promoter Prevalence
 ----------------------------------
 
 .. toctree::
    :maxdepth: 1
 
-   scripts/3_analysis_scripts/8_perturbseq_differentialexpression.ipynb
-   scripts/3_analysis_scripts/10_survival_curve.Rmd
+   scripts/3_analysis_scripts/10_survival_curve.html
 
-* **Downloads:** :download:`8 (.ipynb) <scripts/3_analysis_scripts/8_perturbseq_differentialexpression.ipynb>` | 
-  :download:`10 (.Rmd) <scripts/3_analysis_scripts/10_survival_curve.Rmd>`
+* **Downloads:** :download:`
+  :download:`10 (.html) <scripts/3_analysis_scripts/10_survival_curve.html>`
