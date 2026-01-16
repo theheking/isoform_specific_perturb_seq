@@ -8,7 +8,8 @@ Isoform-specific single-cell Perturb-seq reveals that alternative promoters (AP)
 
 .. figure:: fig/VisualAbstract_vNAR_v2.pdf
    :class: with-border
-
+   :alt: Visual abstract summarizing isoform-specific Perturb-seq study
+   Visual abstract of the isoform-specific Perturb-seq screen, highlighting alternative promoter targeting, analytical workflow, and key biological insights.
 
 Abstract and Key Findings
 -------------------------

@@ -1,10 +1,10 @@
 .. _guide-design:
 
-Guide Design
+Promoter Specific Guide Design
 ============
 
 Procedures for selecting ideal promoter-specific guides using FlashFry. We prioritize 
-protospacers within the first 100 bp of the TSS to maximize CRISPRi efficiency.
+protospacers within the first 100 bp of the TSS to maximize CRISPRi efficiency. 
 
 .. _flashfry-analysis:
 
