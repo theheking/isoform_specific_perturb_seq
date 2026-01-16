@@ -6,6 +6,8 @@ Isoform-specific Perturb-seq
 
 Isoform-specific single-cell Perturb-seq reveals that alternative promoters (AP) are not just redundant regulatory elements but drive distinct biological programs. This documentation covers the methods used to identify these promoters and quantify their functional impact on gene regulation and drug response.
 
+.. figure:: fig/VisualAbstract_vNAR_v2.pdf
+   :class: with-border
 
 
 Abstract and Key Findings
