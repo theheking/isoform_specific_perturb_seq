@@ -1,24 +1,31 @@
 
 ***Under construction***
 
-
 # Isoform-specific perturb-seq reveals alternative promoter dynamics in gene regulation and drug response
 
 ### Abstract
 CRISPR-dCas9 technologies are designed to modulate gene expression. However, our findings reveal that many hits are promoter and isoform-specific. Leveraging this specificity, we developed an isoform-specific single-cell Perturb-Seq screen, showing that alternative promoters frequently compensate for targeted knockdowns and drive divergent gene expression programs at the single-cell level. Importantly, these isoform-specific effects influence drug response in breast cancer, underscoring the relevance of alternative promoters in functional genomics and drug discovery.
 
-## Publicly Available Dual-Guide Analysis
+![Visual Figure](./source/fig/VisualAbstract_vNAR_v2.png)
 
-***1_Promoter_identification***
+
+### Links
+Please access the website: 
+
+- https://isoform-specific-perturb-seq.readthedocs.io/en/latest/index.html
+
+Please access the raw data: 
+
+- https://www.ebi.ac.uk/biostudies/arrayexpress/studies/E-MTAB-14567?key=244774e5-fc31-4e23-8102-4fbd49b2ed09
+  
 
 
 ## APU Perturb-seq Analysis
 
 ***1_Promoter_identification***
-1.
-    A. Integration of RNA-seq, ChIP-seq and CAGE-seq for MCF-7 
-    B. Identify the genes with ideal APU events for guide 
-    C. Comparison of promoter calling against refTSS and EPD
+A. Integration of RNA-seq, ChIP-seq and CAGE-seq for MCF-7 
+B. Identify the genes with ideal APU events for guide 
+C. Comparison of promoter calling against refTSS and EPD
 
 ***2_Guide_design***
 2.  Choosing the ideal promoter-specific guide design 
