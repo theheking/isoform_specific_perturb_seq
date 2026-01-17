@@ -6,6 +6,8 @@ Analysis Scripts & Pipelines
 This section contains the core computational notebooks and scripts used for data processing, 
 statistical analysis, and visualization.
 
+.. _preprocessing-scripts:
+
 Preprocessing & Guide Calling
 -----------------------------
 
@@ -20,6 +22,8 @@ Preprocessing & Guide Calling
 
 * **Shell Pipeline:** :download:`1_cellranger.sh <scripts/3_analysis_scripts/1_cellranger.sh>`
 
+.. _transcript-scripts:
+
 Transcript Quantification
 -------------------------
 
@@ -32,6 +36,8 @@ Transcript Quantification
 
 * **Shell Scripts:** :download:`3A_seperate_bam_file_ideal.sh <scripts/3_analysis_scripts/3A_seperate_bam_file_ideal.sh>` | :download:`3B_whippet_pseudobulk.sh <scripts/3_analysis_scripts/3B_whippet_pseudobulk.sh>`
 
+.. _estat-scripts:
+
 Transcriptional Divergence (E-Stats & Differential Expression)
 ---------------------------------------------------------------
 
@@ -43,6 +49,8 @@ Transcriptional Divergence (E-Stats & Differential Expression)
    scripts/3_analysis_scripts/6_perturbseq_tsne_kldivergence_umap.ipynb
    scripts/3_analysis_scripts/8_perturbseq_differentialexpression.ipynb
 
+.. _cellphase-pathway-scripts:
+
 Cell Phase & Pathway Modeling
 ------------------------------
 
@@ -53,6 +61,8 @@ Cell Phase & Pathway Modeling
    scripts/3_analysis_scripts/9A_cnv_score.ipynb
    scripts/3_analysis_scripts/9B_velocity_loom.ipynb
    scripts/3_analysis_scripts/11_spectra.ipynb
+
+.. _clinical-de-scripts:
 
 Clinical & Promoter Prevalence
 -------------------------------
