@@ -87,7 +87,7 @@ References
 14. **Tang, Z., Kang, B., Li, C., Chen, T. and Zhang, Z.** (2019) GEPIA2: an enhanced web server for large-scale expression profiling and interactive analysis. Nucleic Acids Res, 47, W556-W560.
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: Analysis Pipeline:
 
    promoter_identification
