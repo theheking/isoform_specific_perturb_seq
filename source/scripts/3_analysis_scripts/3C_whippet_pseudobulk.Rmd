@@ -325,6 +325,42 @@ Visualisation of the knockdown percentages for both promoters and both on-target
 
 ```{r}
 gene_table_melt <-  gene_table %>% 
+   filter((looser_KD ==TRUE)) %>%
+  melt(id.vars = c("gene","neg_ctrl_tpm_AP_ontarget","neg_ctrl_tpm_MP_ontarget"),
+                                       measure.vars = c("percent_knockdown_MP_ontarget", "percent_knockdown_AP_ontarget", 
+                                                        "percent_knockdown_MP_offtarget", "percent_knockdown_AP_offtarget"))
+gene_table_melt$target <- ifelse(grepl("ontarget", gene_table_melt$variable), "ontarget", "offtarget")
+gene_table_melt$promoter <- ifelse(grepl("MP", gene_table_melt$variable), "P1", "P2")
+ggplot(gene_table_melt) +
+  geom_boxplot(aes(x=variable, y=value, fill=variable)) + 
+  theme_minimal() + labs(x = "Promoter", y = "Percent Knockdown") + #rotate 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+```
+
+
+
+Plot the knockdown percentages for both promoters split by on-target and off-target for all 35 genes with NTC > 0.5. 
+```{r, echo=TRUE, warning=FALSE, message=FALSE}
+
+a <- gene_table_melt %>% filter(promoter=="P1") %>%
+  ggviolin( x = "target", y = "value",fill = "target",add = "boxplot",    ylab = "Percent Knockdown", xlab = "Promoter", 
+           palette = c(palletee1[1],palletee1[2]),add.params = list(fill = "white") ) +
+theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+  stat_compare_means( paired = TRUE) 
+b <- gene_table_melt %>% filter(promoter=="P2") %>%
+  ggviolin( x = "target", y = "value",fill = "target",add = "boxplot",    ylab = "Percent Knockdown", xlab = "Promoter", 
+            palette = c(palletee2[1],palletee2[2]) ,add.params = list(fill = "white") ) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) + 
+  stat_compare_means( paired = TRUE) 
+
+plot_grid(a, b,  ncol = 1)
+```
+
+Visualisation of the knockdown percentages for both promoters and both on-target and off-target effects.
+
+```{r}
+gene_table_melt <-  gene_table %>% 
    filter((looser_KD ==TRUE) & (sig_ntc_count==TRUE) ) %>%
   melt(id.vars = c("gene","neg_ctrl_tpm_AP_ontarget","neg_ctrl_tpm_MP_ontarget"),
                                        measure.vars = c("percent_knockdown_MP_ontarget", "percent_knockdown_AP_ontarget", 
@@ -340,7 +376,7 @@ ggplot(gene_table_melt) +
 
 
 
-Plot the knockdown percentages for both promoters split by on-target and off-target.
+Plot the knockdown percentages for both promoters split by on-target and off-target of the 31 genes that show "successful KD" which removes the top 15 quantiles.
 ```{r, echo=TRUE, warning=FALSE, message=FALSE}
 
 a <- gene_table_melt %>% filter(promoter=="P1") %>%
